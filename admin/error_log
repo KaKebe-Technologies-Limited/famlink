@@ -1,0 +1,96 @@
+[03-May-2022 16:50:23 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.tblmenu' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/queries/statsquery.php:3
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/queries/statsquery.php(3): mysqli_query(Object(mysqli), 'SELECT COUNT(*)...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(9): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/queries/statsquery.php on line 3
+[03-May-2022 16:50:25 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.tblmenu' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/queries/statsquery.php:3
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/queries/statsquery.php(3): mysqli_query(Object(mysqli), 'SELECT COUNT(*)...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(9): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/queries/statsquery.php on line 3
+[03-May-2022 16:50:26 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.tblmenu' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/queries/statsquery.php:3
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/queries/statsquery.php(3): mysqli_query(Object(mysqli), 'SELECT COUNT(*)...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(9): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/queries/statsquery.php on line 3
+[03-May-2022 16:50:27 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.tblmenu' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/queries/statsquery.php:3
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/queries/statsquery.php(3): mysqli_query(Object(mysqli), 'SELECT COUNT(*)...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(9): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/queries/statsquery.php on line 3
+[08-Jun-2022 02:35:30 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.users' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/session.php:9
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/session.php(9): mysqli_query(Object(mysqli), 'select customer...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(7): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/session.php on line 9
+[08-Jun-2022 02:36:54 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.users' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/session.php:9
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/session.php(9): mysqli_query(Object(mysqli), 'select customer...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(7): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/session.php on line 9
+[08-Jun-2022 02:36:59 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.users' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/session.php:9
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/session.php(9): mysqli_query(Object(mysqli), 'select customer...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(7): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/session.php on line 9
+[08-Jun-2022 02:37:43 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.users' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/session.php:9
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/session.php(9): mysqli_query(Object(mysqli), 'select customer...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(7): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/session.php on line 9
+[08-Jun-2022 02:37:44 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.users' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/session.php:9
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/session.php(9): mysqli_query(Object(mysqli), 'select customer...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(7): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/session.php on line 9
+[08-Jun-2022 02:39:38 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.users' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/session.php:9
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/session.php(9): mysqli_query(Object(mysqli), 'select customer...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(7): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/session.php on line 9
+[08-Jun-2022 02:43:50 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.users' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/session.php:9
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/session.php(9): mysqli_query(Object(mysqli), 'select customer...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(7): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/session.php on line 9
+[08-Jun-2022 03:23:45 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.users' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/session.php:9
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/session.php(9): mysqli_query(Object(mysqli), 'select customer...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(7): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/session.php on line 9
+[08-Jun-2022 03:43:47 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.users' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/session.php:9
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/session.php(9): mysqli_query(Object(mysqli), 'select customer...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(7): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/session.php on line 9
+[08-Jun-2022 05:04:27 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.users' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/session.php:9
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/session.php(9): mysqli_query(Object(mysqli), 'select customer...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(7): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/session.php on line 9
+[08-Jun-2022 09:14:47 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.users' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/session.php:9
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/session.php(9): mysqli_query(Object(mysqli), 'select customer...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(7): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/session.php on line 9
+[08-Jun-2022 09:14:58 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.users' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/admin/session.php:9
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/admin/session.php(9): mysqli_query(Object(mysqli), 'select customer...')
+#1 /home1/rgxszumy/public_html/famlinkApp/admin/index.php(7): require('/home1/rgxszumy...')
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/admin/session.php on line 9

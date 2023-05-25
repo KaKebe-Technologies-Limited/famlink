@@ -1,0 +1,6 @@
+[15-Jul-2022 04:56:01 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'name' in 'field list' in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/Functions/Appointments.php:33
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/Functions/Appointments.php(33): mysqli->prepare('INSERT INTO app...')
+#1 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/routes/create_appointment.php(29): Appointments->create()
+#2 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/Functions/Appointments.php on line 33

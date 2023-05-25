@@ -1,0 +1,55 @@
+[14-Jun-2022 08:45:07 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.tblcustomer' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php:104
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php(104): mysqli->prepare('SELECT customer...')
+#1 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php on line 104
+[14-Jun-2022 08:45:15 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.tblcustomer' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php:104
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php(104): mysqli->prepare('SELECT customer...')
+#1 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php on line 104
+[14-Jun-2022 08:46:18 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.tblcustomer' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php:104
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php(104): mysqli->prepare('SELECT customer...')
+#1 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php on line 104
+[14-Jun-2022 08:46:27 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.tblcustomer' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php:104
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php(104): mysqli->prepare('SELECT customer...')
+#1 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php on line 104
+[14-Jun-2022 08:46:32 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.tblcustomer' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php:104
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php(104): mysqli->prepare('SELECT customer...')
+#1 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php on line 104
+[14-Jun-2022 09:15:21 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.tblcustomer' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php:104
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php(104): mysqli->prepare('SELECT customer...')
+#1 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php on line 104
+[14-Jun-2022 09:15:24 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.tblcustomer' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php:104
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php(104): mysqli->prepare('SELECT customer...')
+#1 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php on line 104
+[14-Jun-2022 09:16:06 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rgxszumy_famlinkapp.tblcustomer' doesn't exist in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php:104
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php(104): mysqli->prepare('SELECT customer...')
+#1 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php on line 104
+[15-Jul-2022 02:45:49 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'customer_id' in 'field list' in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php:104
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php(104): mysqli->prepare('SELECT customer...')
+#1 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php on line 104
+[15-Jul-2022 02:45:56 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'customer_id' in 'field list' in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php:104
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php(104): mysqli->prepare('SELECT customer...')
+#1 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php on line 104
+[15-Jul-2022 03:03:26 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'customer_id' in 'field list' in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php:107
+Stack trace:
+#0 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php(107): mysqli->prepare('SELECT customer...')
+#1 {main}
+  thrown in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/users/account.php on line 107
