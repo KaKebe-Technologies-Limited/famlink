@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!--    <link rel="icon" type="image/x-icon" href="admin/pages/assets/z_favicon.png">-->
+    <title>Famlink - Case</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div class="big-wrapper light">
+        <img src="./img/shape.png" alt="" class="shape"/>
+
+        <header>
+            <div class="container">
+                <div class="logo">
+<!--                    <img />-->
+                    <a href="index.html"> <p style="text-transform: capitalize; text-decoration:none" class="text" >Famlink APP</p></a>
+                   
+                </div>
+
+                <div class="links">
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="admin/">Admin</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#" class="btn">Report Case</a></li>
+                    </ul>
+                </div>
+
+                <div class="overlay"></div>
+
+                <div class="hamburger-menu">
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </header>
+
+      <!-- section goes here -->
+      <div class="container">
+        <h2>Case and Appointment Form</h2>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#caseForm">Case Form</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#appointmentForm">Appointment Form</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="caseForm">
+                <form method="POST" action="save_case.php">
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <input type="text" class="form-control" id="category" name="category" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location:</label>
+                        <input type="text" class="form-control" id="location" name="location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" id="description" name="description" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Record</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="appointmentForm">
+                <form method="POST" action="save_appointment.php">
+                    <div class="form-group">
+                        <label for="purpose">Purpose of Appointment:</label>
+                        <input type="text" class="form-control" id="purpose" name="purpose" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time:</label>
+                        <input type="time" class="form-control" id="time" name="time" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Appointment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+        <div class="bottom-area">
+            <div class="container">
+                <button class="toggle-btn">
+                    <i class="far fa-moon"></i>
+                    <i class="far fa-sun"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="container">
+                <div class="contactcards">
+                    <div class="footercard">
+                        <div class="title">Company</div>
+                        <a href="#" class="lable">
+                        <p class="lable">About us</p>
+                        </a>
+                        <a href="#" class="lable">
+                            <p class="lable">Blog</p>
+                            </a>
+                    </div>
+
+                    <div class="footercard">
+                        <div class="title">Contacts Us</div>
+                        <p class="lable">Phone: <span>+256 772 616446</span></p>
+                        <p class="lable">Email: <span>elizabetha@cewochr.org</span></p>
+                    </div>
+
+                    <div class="footercard">
+                        <div class="title">Let's get social</div>
+                        <div class="socialinks">
+                            <a href="#" class="lable">
+                                <img  src="img/instagram.png" alt="">
+                            </a>
+                            <a href="#" class="lable">
+                                <img  src="img/whatsapp.png" alt="">
+                            </a>
+                            <a href="#" class="lable">
+                                <img  src="img/facebook.png" alt="">
+                            </a>
+                        </div>
+                      
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- JavaScript Files -->
+
+<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
