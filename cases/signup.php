@@ -1,6 +1,6 @@
 <?php 
 
-    require_once("./api/conn.php");
+    require_once("../admin/config.php");  
     $error ="";
     
     if ($_SERVER["REQUEST_METHOD"] == "POST"){

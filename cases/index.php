@@ -1,5 +1,5 @@
 <?php
-    require_once("./api/conn.php");    
+    require_once("../admin/config.php");    
     $category = "SELECT * from refercategories";
     $result = $con->query($category);
 
