@@ -1,3 +1,95 @@
+<?php 
+    session_start();
+    $hostname = "localhost";
+    $username = "root";
+    $password = "";
+    $databasename = "famlinkapp";
+    $port_name = "3306";
+
+    $message ="";
+
+    
+    
+    $con = new mysqli($hostname, $username, $password, $databasename, $port_name);
+    if(!$con){
+        die("Connection failed");
+    }
+
+    // print_r($_SESSION);
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        $user_action = $_POST["user_action"];
+
+        if($user_action === "appointment"){
+            $purpose = $_POST["purpose"];
+            $appointment_date = $_POST["appointment_date"];
+            $appointment_time = $_POST["appointment_time"];
+            // $user_id = $_SESSION["userid"];
+
+            // TO DO this should be the idd of the logged uuser
+            $userid = 12;
+
+            
+
+
+            $stmt = $con->prepare("INSERT INTO appointments(`userid`,`purpose`, `appointment_date`,`appointment_time`) VALUES(?,?,?,?)");
+            $userid = htmlspecialchars(strip_tags($userid));
+            $purpose = htmlspecialchars(strip_tags($purpose));
+            $appointment_date = htmlspecialchars(strip_tags($appointment_date));
+            $appointment_time = htmlspecialchars(strip_tags($appointment_time));
+        
+            $stmt->bind_param("isss", $userid, $purpose, $appointment_date, $appointment_time);
+        
+            if ($stmt->execute()) {
+                
+                $message = "Appointment Submitted succcesfully";
+            } else {
+              
+                $message = "Something went wrong. Try again";
+            }
+
+        }
+
+        if($user_action === "report_case"){
+            $title = $_POST["title"];
+            $picture = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNsJyFJ1hSBVJ4mVkdeyNNJCTR3QyYaEHjug&amp;amp;usqp=CAU";;
+            $description = $_POST["description"];
+            //TO DO this should the suer id og logged user
+            $reportedby_id = 12;
+            $status = 1;
+            $address = $_POST["location"];
+            $datecreated = date('Y-m-d H:i:s');
+            $category_id = 12;
+
+            $stmt = $con->prepare("INSERT INTO cases(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`) VALUES(?,?,?,?,?,?,?)");
+            $title = htmlspecialchars(strip_tags($title));
+            $picture = htmlspecialchars(strip_tags($picture));
+            $description = htmlspecialchars(strip_tags($description));
+            $category_id = htmlspecialchars(strip_tags($category_id));
+            $reportedby_id = htmlspecialchars(strip_tags($reportedby_id));
+            $status = htmlspecialchars(strip_tags($status));
+            $address = htmlspecialchars(strip_tags($address));
+
+            $stmt->bind_param("sssssii", $title, $picture, $description, $category_id, $address, $reportedby_id, $status);
+
+            if ($stmt->execute()) {
+                // $this->exe_status = "success";
+                $message = "Cases Submitted ";
+            } else {
+                // $this->exe_status = "failure";
+                $message = "Cases failed";
+            }
+
+        }
+
+    }
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +150,11 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade show active" id="caseForm">
-                <form method="POST" action="save_case.php">
+                <div class="text-center">
+                    <i><?php echo $message ?></i>
+                </div>
+                <form method="POST" action="#">
+                    <input type="text" name="user_action" value="report_case" hidden>
                     <div class="form-group">
                         <label for="title">Title:</label>
                         <input type="text" class="form-control" id="title" name="title" required>
@@ -79,18 +175,22 @@
                 </form>
             </div>
             <div class="tab-pane fade" id="appointmentForm">
-                <form method="POST" action="save_appointment.php">
+                <form method="POST" action="#">
+                    <div class="text-center">
+                        <i><?php echo $message ?></i>
+                    </div>
+                    <input type="text" name="user_action" value="appointment" hidden>
                     <div class="form-group">
                         <label for="purpose">Purpose of Appointment:</label>
                         <input type="text" class="form-control" id="purpose" name="purpose" required>
                     </div>
                     <div class="form-group">
-                        <label for="date">Date:</label>
-                        <input type="date" class="form-control" id="date" name="date" required>
+                        <label for="date">Appointment Date:</label>
+                        <input type="date" class="form-control" id="date" name="appointment_date" required>
                     </div>
                     <div class="form-group">
                         <label for="time">Time:</label>
-                        <input type="time" class="form-control" id="time" name="time" required>
+                        <input type="time" class="form-control" id="time" name="appointment_time" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Save Appointment</button>
                 </form>
