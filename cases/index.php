@@ -1,21 +1,9 @@
-<?php 
-    session_start();
-    $hostname = "localhost";
-    $username = "root";
-    $password = "";
-    $databasename = "famlinkapp";
-    $port_name = "3306";
+<?php
+    require_once("./api/conn.php");    
+    $category = "SELECT * from refercategories";
+    $result = $con->query($category);
 
     $message ="";
-
-    
-    
-    $con = new mysqli($hostname, $username, $password, $databasename, $port_name);
-    if(!$con){
-        die("Connection failed");
-    }
-
-    // print_r($_SESSION);
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $user_action = $_POST["user_action"];
 
@@ -23,10 +11,7 @@
             $purpose = $_POST["purpose"];
             $appointment_date = $_POST["appointment_date"];
             $appointment_time = $_POST["appointment_time"];
-            // $user_id = $_SESSION["userid"];
-
-            // TO DO this should be the idd of the logged uuser
-            $userid = 12;
+            $userid = $_SESSION["userid"];
 
             
 
@@ -54,11 +39,11 @@
             $picture = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNsJyFJ1hSBVJ4mVkdeyNNJCTR3QyYaEHjug&amp;amp;usqp=CAU";;
             $description = $_POST["description"];
             //TO DO this should the suer id og logged user
-            $reportedby_id = 12;
+            $reportedby_id = $_SESSION["userid"];
             $status = 1;
             $address = $_POST["location"];
             $datecreated = date('Y-m-d H:i:s');
-            $category_id = 12;
+            $category_id = $_POST["category"];
 
             $stmt = $con->prepare("INSERT INTO cases(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`) VALUES(?,?,?,?,?,?,?)");
             $title = htmlspecialchars(strip_tags($title));
@@ -80,7 +65,6 @@
             }
 
         }
-
     }
 
 
@@ -140,6 +124,13 @@
       <!-- section goes here -->
       <div class="container">
         <h2>Case and Appointment Form</h2>
+
+        <div class="text-center">
+            <div class="text-center text-primary mb-3" >
+                <i><?php echo $message ?></i>
+            </div>
+        </div>
+
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#caseForm">Case Form</a>
@@ -150,9 +141,7 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade show active" id="caseForm">
-                <div class="text-center">
-                    <i><?php echo $message ?></i>
-                </div>
+                
                 <form method="POST" action="#">
                     <input type="text" name="user_action" value="report_case" hidden>
                     <div class="form-group">
@@ -161,7 +150,16 @@
                     </div>
                     <div class="form-group">
                         <label for="category">Category:</label>
-                        <input type="text" class="form-control" id="category" name="category" required>
+                        <select name="category" class="form-control" required>
+                            <!-- <option selected disabled>Select</option> -->
+                            <?php
+                                while($row = $result->fetch_assoc()) {?>
+                                    <option value="<?php echo $row["type"] ?>">
+                                        <?php echo $row["type"] ?>
+                                    </option>
+                                <?php }
+                            ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="location">Location:</label>
@@ -176,9 +174,6 @@
             </div>
             <div class="tab-pane fade" id="appointmentForm">
                 <form method="POST" action="#">
-                    <div class="text-center">
-                        <i><?php echo $message ?></i>
-                    </div>
                     <input type="text" name="user_action" value="appointment" hidden>
                     <div class="form-group">
                         <label for="purpose">Purpose of Appointment:</label>

@@ -1,15 +1,6 @@
 <?php 
-    $hostname = "localhost";
-    $username = "root";
-    $password = "";
-    $databasename = "famlinkapp";
-    $port_name = "3306";
-    session_start();
 
-    $con = new mysqli($hostname, $username, $password, $databasename, $port_name);
-    if(!$con){
-        die("Connection failed");
-    }
+    require_once("./api/conn.php");
     $error ="";
     
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -28,12 +19,14 @@
                     $statement = $con->prepare('SELECT * FROM users WHERE  email=? AND password =? limit 1');
                     $statement->bind_param('ss', $myuseremail, $encryptedpw);
                     if ($statement->execute()) {
-                        $statement->store_result();
-                        $statement->fetch();
-                        if ($statement->num_rows == 1) {
-                            $_SESSION['login_user'] = $myuseremail;
+                        $result = $statement->get_result();
+                        if ($result->num_rows == 1) {
+                            $row = $result->fetch_assoc();
+                            $_SESSION['user_email'] = $myuseremail;
+                            $_SESSION['userid'] = $row["user_id"];
                             header("location: index.php");
-                        } else {
+                        }
+                        else {
                             $error = "Login Failed, Ensure Password and Email is Correct and Try Again";
                             echo "<script>showerror();</script>";
                         }
@@ -75,8 +68,8 @@
                         } else {
                     
                                 //if user is new creating an insert query 
-                                $stmt = $con->prepare("INSERT INTO users (`full_name`, `email`, `phone_number`, `address`, `profile_image`,`password`) VALUES (?, ?, ?, ?, ?, ?)");
-                                $stmt->bind_param("ssssss", $full_name, $email, $phone_number, $location_address, $profileimage, $password);
+                                $stmt = $con->prepare("INSERT INTO users(`full_name`,`username`, `email`, `phone_number`, `address`, `profile_image`,`password`) VALUES (?, ?, ?, ?, ?, ?,?)");
+                                $stmt->bind_param("sssssss", $full_name,$full_name, $email, $phone_number, $location_address, $profileimage, $password);
                     
                                 //if the user is successfully added to the database 
                                 if ($stmt->execute()) {
@@ -87,25 +80,15 @@
                                     $stmt->execute();
                                     $stmt->bind_result($user_id, $full_name, $email, $phone_number, $address, $profile_image);
                                     $stmt->fetch();
-                    
-                                    $user = array(
-                                        'id' => $user_id,
-                                        'fullname' => $full_name,
-                                        'email' => $email,
-                                        'phone' => $phone_number,
-                                        'address' => $address,
-                                        'profileimage' => $profile_image
-                                    );
-                    
+                                    
                                     $stmt->close();
+                                    $_SESSION["userid"] = $con->insert_id;
+                                    $_SESSION['user_email'] = $email;
+                                    header("location: index.php");
                     
-                                        //adding the user data in response 
-                                        $response['error'] = false;
-                                        $error = 'User registered successfully';
-                                        header("location: index.php");
-                                        $response['user'] = $user;
                                 }else{
-                                    $error = "Signup failed";
+                                    // $error = "Signup failed";
+                                    $error = $stmt->error; 
                                 }
                         }
                     }else{
