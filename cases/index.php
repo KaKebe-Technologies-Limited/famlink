@@ -77,6 +77,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Link Display -->
+    <meta property="og:title" content="CEWOCHR - Cases ">
+    <meta property="og:description" content="The Centre for Women and Children’s Reintegration (CEWOCHR) is an organization established to address the challenges faced by girls, women and their children born outside of marriage in Uganda. These children and women often experience marginalization and discrimination from both their families and society">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://famlinkapp.com">
+    <meta property="og:image" content="img/ico.jpg">
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
