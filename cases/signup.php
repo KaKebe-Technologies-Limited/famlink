@@ -1,6 +1,8 @@
 <?php 
 
-    require_once("../admin/config.php");  
+    require_once("./../admin/config.php");
+    $database = new Database();
+    $con = $database->getConnString(); 
     $error ="";
     
     if ($_SERVER["REQUEST_METHOD"] == "POST"){

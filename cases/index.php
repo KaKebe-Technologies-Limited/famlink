@@ -1,5 +1,8 @@
 <?php
-    require_once("../admin/config.php");    
+    require_once("./../admin/config.php");
+    $database = new Database();
+    $con = $database->getConnString();
+       
     $category = "SELECT * from refercategories";
     $result = $con->query($category);
 
