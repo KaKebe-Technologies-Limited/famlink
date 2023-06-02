@@ -1,74 +1,74 @@
 <?php
-    require_once("./../admin/config.php");
-    $database = new Database();
-    $con = $database->getConnString();
+    // require_once("./../admin/config.php");
+    // $database = new Database();
+    // $con = $database->getConnString();
        
-    $category = "SELECT * from refercategories";
-    $result = $con->query($category);
+    // $category = "SELECT * from refercategories";
+    // $result = $con->query($category);
 
     $message ="";
-    if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        $user_action = $_POST["user_action"];
+    // if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    //     $user_action = $_POST["user_action"];
 
-        if($user_action === "appointment"){
-            $purpose = $_POST["purpose"];
-            $appointment_date = $_POST["appointment_date"];
-            $appointment_time = $_POST["appointment_time"];
-            $userid = $_SESSION["userid"];
+    //     if($user_action === "appointment"){
+    //         $purpose = $_POST["purpose"];
+    //         $appointment_date = $_POST["appointment_date"];
+    //         $appointment_time = $_POST["appointment_time"];
+    //         $userid = $_SESSION["userid"];
 
             
 
 
-            $stmt = $con->prepare("INSERT INTO appointments(`userid`,`purpose`, `appointment_date`,`appointment_time`) VALUES(?,?,?,?)");
-            $userid = htmlspecialchars(strip_tags($userid));
-            $purpose = htmlspecialchars(strip_tags($purpose));
-            $appointment_date = htmlspecialchars(strip_tags($appointment_date));
-            $appointment_time = htmlspecialchars(strip_tags($appointment_time));
+    //         $stmt = $con->prepare("INSERT INTO appointments(`userid`,`purpose`, `appointment_date`,`appointment_time`) VALUES(?,?,?,?)");
+    //         $userid = htmlspecialchars(strip_tags($userid));
+    //         $purpose = htmlspecialchars(strip_tags($purpose));
+    //         $appointment_date = htmlspecialchars(strip_tags($appointment_date));
+    //         $appointment_time = htmlspecialchars(strip_tags($appointment_time));
         
-            $stmt->bind_param("isss", $userid, $purpose, $appointment_date, $appointment_time);
+    //         $stmt->bind_param("isss", $userid, $purpose, $appointment_date, $appointment_time);
         
-            if ($stmt->execute()) {
+    //         if ($stmt->execute()) {
                 
-                $message = "Appointment Submitted succcesfully";
-            } else {
+    //             $message = "Appointment Submitted succcesfully";
+    //         } else {
               
-                $message = "Something went wrong. Try again";
-            }
+    //             $message = "Something went wrong. Try again";
+    //         }
 
-        }
+    //     }
 
-        if($user_action === "report_case"){
-            $title = $_POST["title"];
-            $picture = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNsJyFJ1hSBVJ4mVkdeyNNJCTR3QyYaEHjug&amp;amp;usqp=CAU";;
-            $description = $_POST["description"];
-            //TO DO this should the suer id og logged user
-            $reportedby_id = $_SESSION["userid"];
-            $status = 1;
-            $address = $_POST["location"];
-            $datecreated = date('Y-m-d H:i:s');
-            $category_id = $_POST["category"];
+    //     if($user_action === "report_case"){
+    //         $title = $_POST["title"];
+    //         $picture = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNsJyFJ1hSBVJ4mVkdeyNNJCTR3QyYaEHjug&amp;amp;usqp=CAU";;
+    //         $description = $_POST["description"];
+    //         //TO DO this should the suer id og logged user
+    //         $reportedby_id = $_SESSION["userid"];
+    //         $status = 1;
+    //         $address = $_POST["location"];
+    //         $datecreated = date('Y-m-d H:i:s');
+    //         $category_id = $_POST["category"];
 
-            $stmt = $con->prepare("INSERT INTO cases(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`) VALUES(?,?,?,?,?,?,?)");
-            $title = htmlspecialchars(strip_tags($title));
-            $picture = htmlspecialchars(strip_tags($picture));
-            $description = htmlspecialchars(strip_tags($description));
-            $category_id = htmlspecialchars(strip_tags($category_id));
-            $reportedby_id = htmlspecialchars(strip_tags($reportedby_id));
-            $status = htmlspecialchars(strip_tags($status));
-            $address = htmlspecialchars(strip_tags($address));
+    //         $stmt = $con->prepare("INSERT INTO cases(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`) VALUES(?,?,?,?,?,?,?)");
+    //         $title = htmlspecialchars(strip_tags($title));
+    //         $picture = htmlspecialchars(strip_tags($picture));
+    //         $description = htmlspecialchars(strip_tags($description));
+    //         $category_id = htmlspecialchars(strip_tags($category_id));
+    //         $reportedby_id = htmlspecialchars(strip_tags($reportedby_id));
+    //         $status = htmlspecialchars(strip_tags($status));
+    //         $address = htmlspecialchars(strip_tags($address));
 
-            $stmt->bind_param("sssssii", $title, $picture, $description, $category_id, $address, $reportedby_id, $status);
+    //         $stmt->bind_param("sssssii", $title, $picture, $description, $category_id, $address, $reportedby_id, $status);
 
-            if ($stmt->execute()) {
-                // $this->exe_status = "success";
-                $message = "Cases Submitted ";
-            } else {
-                // $this->exe_status = "failure";
-                $message = "Cases failed";
-            }
+    //         if ($stmt->execute()) {
+    //             // $this->exe_status = "success";
+    //             $message = "Cases Submitted ";
+    //         } else {
+    //             // $this->exe_status = "failure";
+    //             $message = "Cases failed";
+    //         }
 
-        }
-    }
+    //     }
+    // }
 
 
 
