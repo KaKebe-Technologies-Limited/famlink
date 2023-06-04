@@ -1,109 +1,109 @@
 <?php 
 
-    // require_once("./../admin/config.php");
-    // $database = new Database();
-    // $con = $database->getConnString(); 
+    includer("./../admin/config.php");
+    $database = new Database();
+    $con = $database->getConnString(); 
     $error ="";
     
-    // if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    //     $user_action = $_POST["user_action"];
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        $user_action = $_POST["user_action"];
         
-    //     // login
-    //     if($user_action === "login"){
-    //         try {
-    //             if ($con == null) {
-    //                 $error = "Connection Problems, Check your Connection and Try again";
-    //             } else if ($con) {
-    //                 $myuseremail = mysqli_real_escape_string($con, $_POST['username']);
-    //                 $mypassword = mysqli_real_escape_string($con, $_POST['password']);
-    //                 $encryptedpw = md5($mypassword);
+        // login
+        if($user_action === "login"){
+            try {
+                if ($con == null) {
+                    $error = "Connection Problems, Check your Connection and Try again";
+                } else if ($con) {
+                    $myuseremail = mysqli_real_escape_string($con, $_POST['username']);
+                    $mypassword = mysqli_real_escape_string($con, $_POST['password']);
+                    $encryptedpw = md5($mypassword);
     
-    //                 $statement = $con->prepare('SELECT * FROM users WHERE  email=? AND password =? limit 1');
-    //                 $statement->bind_param('ss', $myuseremail, $encryptedpw);
-    //                 if ($statement->execute()) {
-    //                     $result = $statement->get_result();
-    //                     if ($result->num_rows == 1) {
-    //                         $row = $result->fetch_assoc();
-    //                         $_SESSION['user_email'] = $myuseremail;
-    //                         $_SESSION['userid'] = $row["user_id"];
-    //                         header("location: services.php");
-    //                     }
-    //                     else {
-    //                         $error = "Login Failed, Ensure Password and Email is Correct and Try Again";
-    //                         echo "<script>showerror();</script>";
-    //                     }
-    //                 } else {
-    //                     $error = "Login Failed, Ensure Password and Email is Correct and Try Again";
-    //                     echo "<script>showerror();</script>";
-    //                 }
-    //             }
-    //         } catch (\Throwable $th) {
-    //             $error = $th->getMessage();
-    //         }
-    //     }
+                    $statement = $con->prepare('SELECT * FROM users WHERE  email=? AND password =? limit 1');
+                    $statement->bind_param('ss', $myuseremail, $encryptedpw);
+                    if ($statement->execute()) {
+                        $result = $statement->get_result();
+                        if ($result->num_rows == 1) {
+                            $row = $result->fetch_assoc();
+                            $_SESSION['user_email'] = $myuseremail;
+                            $_SESSION['userid'] = $row["user_id"];
+                            header("location: services.php");
+                        }
+                        else {
+                            $error = "Login Failed, Ensure Password and Email is Correct and Try Again";
+                            echo "<script>showerror();</script>";
+                        }
+                    } else {
+                        $error = "Login Failed, Ensure Password and Email is Correct and Try Again";
+                        echo "<script>showerror();</script>";
+                    }
+                }
+            } catch (\Throwable $th) {
+                $error = $th->getMessage();
+            }
+        }
 
         // registration
-        // if($user_action === "register"){
-        //     if(
-        //         (isset($_POST["full_name"]) && $_POST["full_name"] != null) && (isset($_POST["email"]) && $_POST["email"] != null) && (isset($_POST["phone_number"]) && $_POST["phone_number"] != null) && (isset($_POST["location_address"]) && $_POST["location_address"] != null) && (isset($_POST["password"]) && $_POST["password"] != null)  
-        //     ){
-        //             $full_name = $_POST['full_name'];
-        //             $email = $_POST['email'];
-        //             $phone_number = $_POST['phone_number'];
-        //             $password = md5($_POST['password']);
-        //             $location_address = $_POST['location_address'];
-        //             $profileimage = "https://media.istockphoto.com/vectors/creative-vector-seamless-pattern-vector-id975589890?k=20&m=975589890&s=612x612&w=0&h=2acWhh0ASGWI7vRqofWthsp2UqagVUCQqdmUQLyAs3Y=";
+        if($user_action === "register"){
+            if(
+                (isset($_POST["full_name"]) && $_POST["full_name"] != null) && (isset($_POST["email"]) && $_POST["email"] != null) && (isset($_POST["phone_number"]) && $_POST["phone_number"] != null) && (isset($_POST["location_address"]) && $_POST["location_address"] != null) && (isset($_POST["password"]) && $_POST["password"] != null)  
+            ){
+                    $full_name = $_POST['full_name'];
+                    $email = $_POST['email'];
+                    $phone_number = $_POST['phone_number'];
+                    $password = md5($_POST['password']);
+                    $location_address = $_POST['location_address'];
+                    $profileimage = "https://media.istockphoto.com/vectors/creative-vector-seamless-pattern-vector-id975589890?k=20&m=975589890&s=612x612&w=0&h=2acWhh0ASGWI7vRqofWthsp2UqagVUCQqdmUQLyAs3Y=";
                 
-        //             if($_POST["password"] === $_POST["confirmPassword"]){
+                    if($_POST["password"] === $_POST["confirmPassword"]){
                         
-        //                 //checking if the user is already exist with this username or email
-        //                 //as the email and username should be unique for every user 
-        //                 $stmt = $con->prepare("SELECT user_id FROM users WHERE phone_number = ? OR email = ?");
-        //                 $stmt->bind_param("ss", $phone_number, $email);
-        //                 $stmt->execute();
-        //                 $stmt->store_result();
+                        //checking if the user is already exist with this username or email
+                        //as the email and username should be unique for every user 
+                        $stmt = $con->prepare("SELECT user_id FROM users WHERE phone_number = ? OR email = ?");
+                        $stmt->bind_param("ss", $phone_number, $email);
+                        $stmt->execute();
+                        $stmt->store_result();
     
-        //                             //if the user already exist in the database 
-        //                 if ($stmt->num_rows > 0) {
-        //                         $error = 'User already registered';
-        //                         $stmt->close();
-        //                 } else {
+                                    //if the user already exist in the database 
+                        if ($stmt->num_rows > 0) {
+                                $error = 'User already registered';
+                                $stmt->close();
+                        } else {
                     
-        //                         //if user is new creating an insert query 
-        //                         $stmt = $con->prepare("INSERT INTO users(`full_name`,`username`, `email`, `phone_number`, `address`, `profile_image`,`password`) VALUES (?, ?, ?, ?, ?, ?,?)");
-        //                         $stmt->bind_param("sssssss", $full_name,$full_name, $email, $phone_number, $location_address, $profileimage, $password);
+                                //if user is new creating an insert query 
+                                $stmt = $con->prepare("INSERT INTO users(`full_name`,`username`, `email`, `phone_number`, `address`, `profile_image`,`password`) VALUES (?, ?, ?, ?, ?, ?,?)");
+                                $stmt->bind_param("sssssss", $full_name,$full_name, $email, $phone_number, $location_address, $profileimage, $password);
                     
-        //                         //if the user is successfully added to the database 
-        //                         if ($stmt->execute()) {
+                                //if the user is successfully added to the database 
+                                if ($stmt->execute()) {
                     
-        //                             //fetching the user back 
-        //                             $stmt = $con->prepare("SELECT `user_id`, `full_name`, `email`, `phone_number`, `address`, `profile_image` FROM users WHERE phone_number = ? OR email = ?");
-        //                             $stmt->bind_param("ss", $phone_number, $email);
-        //                             $stmt->execute();
-        //                             $stmt->bind_result($user_id, $full_name, $email, $phone_number, $address, $profile_image);
-        //                             $stmt->fetch();
+                                    //fetching the user back 
+                                    $stmt = $con->prepare("SELECT `user_id`, `full_name`, `email`, `phone_number`, `address`, `profile_image` FROM users WHERE phone_number = ? OR email = ?");
+                                    $stmt->bind_param("ss", $phone_number, $email);
+                                    $stmt->execute();
+                                    $stmt->bind_result($user_id, $full_name, $email, $phone_number, $address, $profile_image);
+                                    $stmt->fetch();
                                     
-        //                             $stmt->close();
-        //                             // $_SESSION["userid"] = $con->insert_id;
-        //                             // $_SESSION['user_email'] = $email;
+                                    $stmt->close();
+                                    // $_SESSION["userid"] = $con->insert_id;
+                                    // $_SESSION['user_email'] = $email;
 
-        //                             header("location: services.php");
+                                    header("location: services.php");
                     
-        //                         }else{
-        //                             // $error = "Signup failed";
-        //                             $error = $stmt->error; 
-        //                         }
-        //                 }
-        //             }else{
-        //                 $error = "Password mismatch. Try Again";
-        //             }
+                                }else{
+                                    // $error = "Signup failed";
+                                    $error = $stmt->error; 
+                                }
+                        }
+                    }else{
+                        $error = "Password mismatch. Try Again";
+                    }
         
-        //     }else {
-        //         $error = 'required parameters are not available';
-        //     }
-        // }
+            }else {
+                $error = 'required parameters are not available';
+            }
+        }
 
-    // }
+    }
 ?>
 
 <!DOCTYPE html>
