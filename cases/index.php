@@ -1,6 +1,6 @@
 <?php 
 
-    includer("./../admin/config.php");
+    include("./../admin/config.php");
     $database = new Database();
     $con = $database->getConnString(); 
     $error ="";
@@ -58,8 +58,8 @@
                         
                         //checking if the user is already exist with this username or email
                         //as the email and username should be unique for every user 
-                        $stmt = $con->prepare("SELECT user_id FROM users WHERE phone_number = ? OR email = ?");
-                        $stmt->bind_param("ss", $phone_number, $email);
+                        $stmt = $con->prepare("SELECT * FROM users WHERE email = ?");
+                        $stmt->bind_param("s", $email);
                         $stmt->execute();
                         $stmt->store_result();
     

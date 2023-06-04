@@ -2,9 +2,16 @@
     include("./../admin/config.php");
     $database = new Database();
     $con = $database->getConnString();
+
+    $category_data = [];
        
-    $category = "SELECT * from refercategories";
-    $result = $con->query($category);
+    // $category = "SELECT * from refercategories";
+    // $result = $con->query($category);
+    
+    // while($row = $result->fetch_assoc()) {
+    //     array_push($category_data,$row);
+    // }
+
 
     $message ="";
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -161,13 +168,14 @@
                         <label for="category">Category:</label>
                         <select name="category" class="form-control" required>
                             <!-- <option selected disabled>Select</option> -->
-                            <?php
-                                while($row = $result->fetch_assoc()) {?>
-                                    <option value="<?php echo $row["type"] ?>">
-                                        <?php echo $row["type"] ?>
+                            <?php 
+                                foreach($category_data as $data){?>
+                                    <option value="<?php echo $data->type ?>">
+                                        <?php echo $data->type ?>
                                     </option>
                                 <?php }
                             ?>
+                            <option value=""></option>
                         </select>
                     </div>
                     <div class="form-group">
