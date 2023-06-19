@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Report Form</title>
+
+  <style>
+    .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+<div class="form-container">
+  <div class="container">
+    <h2>Report Case</h2>
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <form>
+          <div class="form-group">
+            <label for="reporter">Name of Reporter (optional):</label>
+            <input type="text" class="form-control" id="reporter">
+          </div>
+          <div class="form-group">
+            <label for="victim">Name of Victim:</label>
+            <input type="text" class="form-control" id="victim">
+          </div>
+          <div class="form-group">
+            <label for="village">Village:</label>
+            <input type="text" class="form-control" id="village">
+          </div>
+          <div class="form-group">
+            <label for="subcounty">Sub County:</label>
+            <input type="text" class="form-control" id="subcounty">
+          </div>
+          <div class="form-group">
+            <label for="district">District:</label>
+            <input type="text" class="form-control" id="district">
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <form>
+          <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select class="form-control" id="gender" required>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" class="form-control" id="age">
+          </div>
+          <div class="form-group">
+            <label for="religion">Religion:</label>
+            <input type="text" class="form-control" id="religion">
+          </div>
+          <div class="form-group">
+            <label for="photo">Photo:</label>
+            <input type="file" class="form-control" id="photo">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" class="form-control" id="phone">
+          </div>
+         
+        </form>
+      </div>
+      <div class="col-lg-4">
+        <form>
+          
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email">
+          </div>
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea class="form-control" id="description" rows="5" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="consent">Do you consent to the use of the above information provided?</label>
+            <select class="form-control" id="consent" required>
+              <option value="">Select...</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
