@@ -55,7 +55,18 @@
             $datecreated = date('Y-m-d H:i:s');
             $category_id = $_POST["category"];
 
-            $stmt = $con->prepare("INSERT INTO cases(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`) VALUES(?,?,?,?,?,?,?)");
+            // new modificattions on reporting cases
+            $victim_name = $_POST["victim_name"];
+            $gender = $_POST["victim_gender"];
+            $age = $_POST["victim_age"];
+            $region = $_POST["region"];
+            $contact = $_POST["contact"];
+            $village = $_POST["village"];
+            $subCounty = $_POST["sub_county"];
+            $district = $_POST["district"];
+            $agree = $_POST["user_consent"];
+
+            $stmt = $con->prepare("INSERT INTO cases(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`,`victim_name`,`victim_gender`,`victim_age`,`region`,`contact`,`village`,`sub_county`,`district`,`user_consent`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $title = htmlspecialchars(strip_tags($title));
             $picture = htmlspecialchars(strip_tags($picture));
             $description = htmlspecialchars(strip_tags($description));
@@ -64,7 +75,20 @@
             $status = htmlspecialchars(strip_tags($status));
             $address = htmlspecialchars(strip_tags($address));
 
-            $stmt->bind_param("sssssii", $title, $picture, $description, $category_id, $address, $reportedby_id, $status);
+            $victim_name = htmlspecialchars(strip_tags($victim_name));
+            $victim_gender = htmlspecialchars(strip_tags($victim_gender));
+            $age = htmlspecialchars(strip_tags($age));
+            $region  = htmlspecialchars(strip_tags($region));
+            $contact = htmlspecialchars(strip_tags($contact));
+            $village = htmlspecialchars(strip_tags($village));
+            $sub_county = htmlspecialchars(strip_tags($sub_county));
+            $district = htmlspecialchars(strip_tags($district));
+            $agree = htmlspecialchars(strip_tags($agree));
+
+
+
+
+            $stmt->bind_param("sssssiississssss", $title, $picture, $description, $category_id, $address, $reportedby_id, $status,$victim_name,$victim_gender,$age,$contact,$village,$sub_county,$district,$agree);
 
             if ($stmt->execute()) {
                 // $this->exe_status = "success";
