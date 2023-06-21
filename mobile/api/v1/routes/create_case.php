@@ -27,10 +27,11 @@ if(!empty($data->title) && !empty($data->category_id) && !empty($data->reportedb
     $items->datecreated = date('Y-m-d H:i:s');
     
     $items->victim_name = $data->victim_name;
-    $items->victim_gender = $data->gender;
+    $items->gender = $data->gender;
     $items->age = $data->age;
     $items->region = $data->region;
     $items->contact = $data->contact;
+    $items->village = $data->village;
     $items->subCounty = $data->subcounty;
     $items->district  = $data->address;
 
