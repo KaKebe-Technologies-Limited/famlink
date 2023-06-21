@@ -25,6 +25,17 @@ if(!empty($data->title) && !empty($data->category_id) && !empty($data->reportedb
     $items->status = 1;
     $items->picture = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNsJyFJ1hSBVJ4mVkdeyNNJCTR3QyYaEHjug&amp;amp;usqp=CAU";
     $items->datecreated = date('Y-m-d H:i:s');
+    
+    $items->victim_name = $data->victim_name;
+    $items->victim_gender = $data->gender;
+    $items->age = $data->age;
+    $items->region = $data->region;
+    $items->contact = $data->contact;
+    $items->subCounty = $data->subcounty;
+    $items->district  = $data->address;
+
+
+
 
 
 
