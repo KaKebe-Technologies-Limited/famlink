@@ -34,6 +34,7 @@ if(!empty($data->title) && !empty($data->category_id) && !empty($data->reportedb
     $items->village = $data->village;
     $items->subCounty = $data->subcounty;
     $items->district  = $data->address;
+    $items->anysupport = $data->anysupport;
 
 
 
