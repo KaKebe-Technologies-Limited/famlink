@@ -65,7 +65,6 @@ class Referral
 
 
         $stmt->bind_param("sssssiississssss", $this->title, $this->picture, $this->description, $this->category_id, $this->address, $this->reportedby_id, $this->status,$this->victim_name,$this->gender,$this->age,$this->region,$this->contact,$this->village,$this->subCounty,$this->district,$this->anysupport);
-
 		if ($stmt->execute()) {
 			$this->exe_status = "success";
 		} else {
