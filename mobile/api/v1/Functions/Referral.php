@@ -21,7 +21,7 @@ class Referral
 	public $village;
 	public $subCounty;
 	public $district;
-	public $agree;
+	public $anysupport;
 
 
 	public $status;
@@ -59,10 +59,10 @@ class Referral
 		$village = htmlspecialchars(strip_tags($village));
 		$sub_county = htmlspecialchars(strip_tags($sub_county));
 		$district = htmlspecialchars(strip_tags($district));
-		$agree = htmlspecialchars(strip_tags($agree));
+		$anysupport = htmlspecialchars(strip_tags($anysupport));
 
 
-        $stmt->bind_param("sssssiississsss", $this->title, $this->picture, $this->description, $this->category_id, $this->address, $this->reportedby_id, $this->status,$this->victim_name,$this->gender,$this->age,$this->region,$this->contact,$this->village,$this->subCounty,$this->district);
+        $stmt->bind_param("sssssiississssss", $this->title, $this->picture, $this->description, $this->category_id, $this->address, $this->reportedby_id, $this->status,$this->victim_name,$this->gender,$this->age,$this->region,$this->contact,$this->village,$this->subCounty,$this->district,$this->anysupport);
 
 		if ($stmt->execute()) {
 			$this->exe_status = "success";
