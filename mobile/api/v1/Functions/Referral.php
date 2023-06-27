@@ -41,7 +41,7 @@ class Referral
 	function create()
 	{
 
-		$stmt = $this->conn->prepare("INSERT INTO " . $this->cases . "(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`,`victim_name`,`victim_gender`,`victim_age`,`region`,`contact`,`village`,`sub_county`,`district`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		$stmt = $this->conn->prepare("INSERT INTO " . $this->cases . "(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`,`victim_name`,`victim_gender`,`victim_age`,`region`,`contact`,`village`,`sub_county`,`district`,`any_support`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 		$this->title = htmlspecialchars(strip_tags($this->title));
 		$this->picture = htmlspecialchars(strip_tags($this->picture));
