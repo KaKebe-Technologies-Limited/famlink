@@ -22,8 +22,7 @@ class Referral
 	public $subCounty;
 	public $district;
 	public $agree;
-	public $anysupport;
-	
+
 
 	public $status;
 	// order private
@@ -42,7 +41,7 @@ class Referral
 	function create()
 	{
 
-		$stmt = $this->conn->prepare("INSERT INTO " . $this->cases . "(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`,`victim_name`,`victim_gender`,`victim_age`,`region`,`contact`,`village`,`sub_county`,`district`,`any_support`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		$stmt = $this->conn->prepare("INSERT INTO " . $this->cases . "(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`,`victim_name`,`victim_gender`,`victim_age`,`region`,`contact`,`village`,`sub_county`,`district`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 		$this->title = htmlspecialchars(strip_tags($this->title));
 		$this->picture = htmlspecialchars(strip_tags($this->picture));
@@ -52,32 +51,19 @@ class Referral
         $this->status = htmlspecialchars(strip_tags($this->status));
         $this->address = htmlspecialchars(strip_tags($this->address));
 
-		$this->victim_name = htmlspecialchars(strip_tags($victim_name));
-		$this->victim_gender = htmlspecialchars(strip_tags($victim_gender));
-		$this->age = htmlspecialchars(strip_tags($age));
-		$this->region  = htmlspecialchars(strip_tags($region));
-		$this->contact = htmlspecialchars(strip_tags($contact));
-		$this->village = htmlspecialchars(strip_tags($village));
-		$this->sub_county = htmlspecialchars(strip_tags($sub_county));
-		$this->district = htmlspecialchars(strip_tags($district));
-		$this->agree = htmlspecialchars(strip_tags($agree));
-		$this->anysupport = htmlspecialchars(strip_tags($anysupport));
+		$victim_name = htmlspecialchars(strip_tags($victim_name));
+		$victim_gender = htmlspecialchars(strip_tags($victim_gender));
+		$age = htmlspecialchars(strip_tags($age));
+		$region  = htmlspecialchars(strip_tags($region));
+		$contact = htmlspecialchars(strip_tags($contact));
+		$village = htmlspecialchars(strip_tags($village));
+		$sub_county = htmlspecialchars(strip_tags($sub_county));
+		$district = htmlspecialchars(strip_tags($district));
+		$agree = htmlspecialchars(strip_tags($agree));
 
 
-        $stmt->bind_param("sssssiississssss", $this->title,	$this->picture,$this->description,$this->category_id, 
-												$this->address, 
-												$this->reportedby_id, 
-												$this->status,
-												$this->victim_name,
-												$this->gender,
-												$this->age,
-												$this->region,
-												$this->contact,
-												$this->village,
-												$this->subCounty,
-												$this->district,
-												$this->anysupport
-	);
+        $stmt->bind_param("sssssiississsss", $this->title, $this->picture, $this->description, $this->category_id, $this->address, $this->reportedby_id, $this->status,$this->victim_name,$this->gender,$this->age,$this->region,$this->contact,$this->village,$this->subCounty,$this->district);
+
 		if ($stmt->execute()) {
 			$this->exe_status = "success";
 		} else {
