@@ -42,7 +42,7 @@ class Referral
 	function create()
 	{
 
-		$stmt = $this->conn->prepare("INSERT INTO " . $this->cases . "(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`,`victim_name`,`victim_gender`,`victim_age`,`religion`,`contact`,`village`,`sub_county`,`district`,`any_support`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		$stmt = $this->conn->prepare("INSERT INTO " . $this->cases . "(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`,`victim_name`,`victim_gender`,`victim_age`,`region`,`contact`,`village`,`sub_county`,`district`,`any_support`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 		$this->title = htmlspecialchars(strip_tags($this->title));
 		$this->picture = htmlspecialchars(strip_tags($this->picture));
@@ -64,10 +64,7 @@ class Referral
 		$this->anysupport = htmlspecialchars(strip_tags($anysupport));
 
 
-        $stmt->bind_param("sssssiississssss", $this->title, 
-												$this->picture, 
-												$this->description, 
-												$this->category_id, 
+        $stmt->bind_param("sssssiississssss", $this->title,	$this->picture,$this->description,$this->category_id, 
 												$this->address, 
 												$this->reportedby_id, 
 												$this->status,
