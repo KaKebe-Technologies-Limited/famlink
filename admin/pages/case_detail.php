@@ -64,25 +64,31 @@ require("../queries/classes/Cases.php");
 
         <ul class="menu-links">
           <li class="nav-link ">
-            <a href="../index">
+            <a href="../index.php">
               <i class='bx bx-home-alt icon'></i>
               <span class="text nav-text">Dashboard</span>
             </a>
           </li>
 
           <li class="nav-link active">
-            <a href="cases">
+            <a href="cases.php">
               <i class='bx bx-bar-chart-alt-2 icon'></i>
               <span class="text nav-text">Cases</span>
             </a>
           </li>
 
           <li class="nav-link">
-            <a href="appointments">
+            <a href="appointments.php">
               <i class='bx bx-bell icon'></i>
               <span class="text nav-text">Appointments</span>
             </a>
           </li>
+          <li class="nav-link">
+            <a href="#">
+                <i class='bx bx-pie-chart-alt icon'></i>
+                <span class="text nav-text">Users</span>
+            </a>
+            </li>
 
           <!-- <li class="nav-link">
             <a href="#">

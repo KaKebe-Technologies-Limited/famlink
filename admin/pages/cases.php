@@ -63,7 +63,7 @@ require("../queries/classes/Cases.php");
 
             <ul class="menu-links">
                 <li class="nav-link ">
-                    <a href="../index">
+                    <a href="../index.php">
                         <i class='bx bx-home-alt icon'></i>
                         <span class="text nav-text">Dashboard</span>
                     </a>
@@ -77,10 +77,17 @@ require("../queries/classes/Cases.php");
                 </li>
 
                 <li class="nav-link ">
-                    <a href="appointments">
+                    <a href="appointments.php">
                         <i class='bx bx-bell icon'></i>
                         <span class="text nav-text">Appointments</span>
                     </a>
+                </li>
+
+                <li class="nav-link">
+                  <a href="#">
+                    <i class='bx bx-pie-chart-alt icon'></i>
+                    <span class="text nav-text">Users</span>
+                  </a>
                 </li>
 
 <!--                 <li class="nav-link">-->
@@ -148,7 +155,7 @@ require("../queries/classes/Cases.php");
 
 
                     <a href="cases_handled.php">
-                        <div class="filterorder">Handled <span class="noti circlenotactive"><?= $total_handledCases ?></span></div>
+                        <div class="filterorder">Completed <span class="noti circlenotactive"><?= $total_handledCases ?></span></div>
                     </a>
 
 
