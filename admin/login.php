@@ -35,6 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mypassword = mysqli_real_escape_string($con, $_POST['password']);
             $encryptedpw = md5($mypassword);
 
+            //i have added the userRole 3
+            // 1 - ordinary user
+            // 2 - superadmin
+            //3 - admin
+
             $statement = $con->prepare('SELECT * FROM users WHERE  email=? AND password =? AND (userRole = "2" OR userRole = "3") limit 1');
             $statement->bind_param('ss', $myuseremail, $encryptedpw);
             if ($statement->execute()) {
