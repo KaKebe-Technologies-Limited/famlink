@@ -235,6 +235,12 @@ require("../queries/classes/Cases.php");
                                                 </div>
                                             <?php endif ?>
 
+                                            <div class="approvebutton_parent"  aria-disabled="true">
+                                                <input class="order_id_input" type="hidden" name="orderID" value="<?= $order->getId() ?>">
+                                                <input class="order_status_id" type="hidden" name="order_status_id" value="<?= $order->getStatusID() ?>">
+                                                <button class="approvebutton">Share Case</button>
+                                            </div>
+
                                         </div>
                                     </div>
 
