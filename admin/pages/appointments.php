@@ -63,34 +63,34 @@ require("../queries/classes/Appointment.php");
 
             <ul class="menu-links">
                 <li class="nav-link ">
-                    <a href="../index">
+                    <a href="../index.php">
                         <i class='bx bx-home-alt icon'></i>
                         <span class="text nav-text">Dashboard</span>
                     </a>
                 </li>
 
                 <li class="nav-link">
-                    <a href="cases">
+                    <a href="cases.php">
                         <i class='bx bx-bar-chart-alt-2 icon'></i>
                         <span class="text nav-text">Cases</span>
                     </a>
                 </li>
 
                 <li class="nav-link active">
-                    <a href="appointments">
+                    <a href="appointments.php">
                         <i class='bx bx-bell icon'></i>
                         <span class="text nav-text">Appointments</span>
                     </a>
                 </li>
 
-                <!-- <li class="nav-link">
+                <li class="nav-link">
                   <a href="#">
                     <i class='bx bx-pie-chart-alt icon'></i>
-                    <span class="text nav-text">Analytics</span>
+                    <span class="text nav-text">Users</span>
                   </a>
                 </li>
 
-                <li class="nav-link">
+                <!-- <li class="nav-link">
                   <a href="#">
                     <i class='bx bx-heart icon'></i>
                     <span class="text nav-text">Likes</span>
@@ -102,7 +102,7 @@ require("../queries/classes/Appointment.php");
                     <i class='bx bx-wallet icon'></i>
                     <span class="text nav-text">Wallets</span>
                   </a>
-                </li> -->
+                </li> --> 
 
             </ul>
         </div>
