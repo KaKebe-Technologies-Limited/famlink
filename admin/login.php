@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $statement->fetch();
                 if ($statement->num_rows == 1) {
                     $_SESSION['login_user'] = $myuseremail;
-                    header("location: index");
+                    header("location: index.php");
                 } else {
                     $error = "Login Failed, Ensure Password and Email is Correct and Try Again";
                     echo "<script>showerror();</script>";
