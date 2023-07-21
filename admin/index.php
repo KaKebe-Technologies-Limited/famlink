@@ -84,6 +84,13 @@ require "queries/classes/Cases.php";
               <span class="text nav-text">Appointments</span>
             </a>
           </li>
+          
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-bell icon'></i>
+              <span class="text nav-text">Users</span>
+            </a>
+          </li>
 
           <!-- <li class="nav-link">
             <a href="#">

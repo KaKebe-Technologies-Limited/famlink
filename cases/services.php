@@ -5,12 +5,14 @@
 
     $category_data = [];
        
-    // $category = "SELECT * from refercategories";
-    // $result = $con->query($category);
-    
-    // while($row = $result->fetch_assoc()) {
-    //     array_push($category_data,$row);
-    // }
+    $category = "SELECT * from refercategories";
+    $result = $con->query($category);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            array_push($category_data,$row["type"]);
+        }
+    }
 
 
     $message ="";
@@ -134,6 +136,7 @@
 </head>
 <body>
 <main>
+
     <div class="big-wrapper light">
         <img src="./img/shape.png" alt="" class="shape"/>
 
@@ -191,11 +194,11 @@
                     <div class="form-group">
                         <label for="category">Category:</label>
                         <select name="category" class="form-control" required>
-                            <!-- <option selected disabled>Select</option> -->
+                            <option selected disabled>Select</option>
                             <?php 
-                                foreach($category_data as $data){?>
-                                    <option value="<?php echo $data->type ?>">
-                                        <?php echo $data->type ?>
+                                for($i=0;$i<count($category_data);$i++){?>
+                                    <option value="<?php echo $category_data[$i] ?>">
+                                        <?php echo $category_data[$i] ?>
                                     </option>
                                 <?php }
                             ?>
@@ -234,64 +237,17 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
-        <div class="bottom-area">
-            <div class="container">
-                <button class="toggle-btn">
-                    <i class="far fa-moon"></i>
-                    <i class="far fa-sun"></i>
-                </button>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="container">
-                <div class="contactcards">
-                    <div class="footercard">
-                        <div class="title">Company</div>
-                        <a href="#" class="lable">
-                        <p class="lable">About us</p>
-                        </a>
-                        <a href="#" class="lable">
-                            <p class="lable">Blog</p>
-                            </a>
-                    </div>
-
-                    <div class="footercard">
-                        <div class="title">Contacts Us</div>
-                        <p class="lable">Phone: <span>+256 772 616446</span></p>
-                        <p class="lable">Email: <span>elizabetha@cewochr.org</span></p>
-                    </div>
-
-                    <div class="footercard">
-                        <div class="title">Let's get social</div>
-                        <div class="socialinks">
-                            <a href="#" class="lable">
-                                <img  src="img/instagram.png" alt="">
-                            </a>
-                            <a href="#" class="lable">
-                                <img  src="img/whatsapp.png" alt="">
-                            </a>
-                            <a href="#" class="lable">
-                                <img  src="img/facebook.png" alt="">
-                            </a>
-                        </div>
-                      
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
 </main>
-
-<!-- JavaScript Files -->
 
 <script src="https://kit.fontawesome.com/a81368914c.js"></script>
 <script src="./app.js"></script>
+
+<!-- JavaScript Files -->
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a81368914c.js"></script> -->
+<!-- <script src="./app.js"></script> -->
 </body>
 </html>
