@@ -9,6 +9,7 @@ require('../session.php');
 require('../queries/statsquery.php');
 require("../queries/classes/User.php");
 require("../queries/classes/Cases.php");
+require("../queries/classes/admins.php");
 
 
 ?>
@@ -32,8 +33,15 @@ require("../queries/classes/Cases.php");
 
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
     <title>Case Detail</title>
+    <style>
+         .select2-container--classic .select2-dropdown {
+            max-height: 200px; /* Set your desired height */
+            overflow-y: auto;
+        }
+    </style>
 
 </head>
 
@@ -137,6 +145,7 @@ require("../queries/classes/Cases.php");
 
                     <?php
                     $order = new Cases($con, $orderid);
+                    $adminUsers = new AdminUsers($con);
 
                     if ($order->getId() != null) :
                     ?>
@@ -221,6 +230,12 @@ require("../queries/classes/Cases.php");
                                                 <button class="cancelbutton">Delete Case</button>
                                             </div>
 
+                                            <div class="assignCaseButton" style="margin-left:20px"  aria-disabled="true">
+                                                <input class="order_id_input" type="hidden" name="orderID" value="<?= $order->getId() ?>">
+                                                <input class="order_status_id" type="hidden" name="order_status_id" value="<?= $order->getStatusID() ?>">
+                                                <button class="assignButton" >Assign Case</button>
+                                            </div>
+
                                             <?php if ( $order->getStatusID() < 3) : ?>
                                             <div class="approvebutton_parent">
                                                 <input class="order_id_input" type="hidden" name="orderID" value="<?= $order->getId() ?>">
@@ -235,11 +250,7 @@ require("../queries/classes/Cases.php");
                                                 </div>
                                             <?php endif ?>
 
-                                            <div class="approvebutton_parent"  aria-disabled="true">
-                                                <input class="order_id_input" type="hidden" name="orderID" value="<?= $order->getId() ?>">
-                                                <input class="order_status_id" type="hidden" name="order_status_id" value="<?= $order->getStatusID() ?>">
-                                                <button class="approvebutton">Share Case</button>
-                                            </div>
+                                            
 
                                         </div>
                                     </div>
@@ -289,6 +300,46 @@ require("../queries/classes/Cases.php");
                             </div>
                         </div>
 
+                        <!-- modal to assign a case to another user -->
+                            <div class="sponserdiv" id="assigncase" >
+                                <div class="sponsorshipform" style="margin:auto;width:400px;position: fixed;top: 30%; left: 50%;">
+                                    <div class="sponsormessagediv">
+
+                                    </div>
+                                    <form id="assignCase" action="" method="POST">
+
+                                        <div class="form-group">
+                                            <input id="childnameinput" type="hidden" name="childname" class="form-control" placeholder="order_id" disabled>
+                                            <input id="order_status_id" type="hidden" name="order_status" class="form-control" placeholder="order_status" disabled>
+                                        </div>
+
+                                        <div>
+                                            <h3>Assign Case</h3>
+                                            <p style="font-size:16px;opacity:.6">Assign case to another admin user.</p>
+                                        </div>
+                                        <select id="searchableSelect" class="form-control" style="margin-top:20px">
+                                            <option disabled selected style="padding:10px">Select</option>
+                                            <?php  
+                                                foreach ($adminUsers->getUsers() as $key ) {?>
+                                                <option
+                                                    value="<?php echo $key["user_id"]?>"
+                                                >
+                                                    <?php echo $key["full_name"];}?>
+                                            </option>
+                                        </select>
+
+                                        <div class="form-group" style="margin-top:10px">
+                                            <input type="submit" value="Assign" style="width: 100% !important;" class="sponsorchildnowbtn">
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="reset" id="cancelbtn" style="background: #fff;border: 1px solid #000;padding: 10px 20px;width: 100%;color: #000; border-radius: 5px;" onclick="cancelsponsohip()">Cancel
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        <!-- end of the assign case modal -->
                         <!--        loader-->
                         <div class="loaderdiv">
                             <div class="loader-container">
@@ -338,9 +389,27 @@ require("../queries/classes/Cases.php");
         //
         //     }
         // });
+        $(document).ready(function () {
+            $('#searchableSelect').select2({
+                width: '100%', 
+                height:'100px'
+            });
+            $(".assignButton").click(function(){
+                var caseId = $(".order_id_input").val();
+                var statusId = $(".order_status_id").val();
+                console.log(caseId);
+                console.log(statusId);
+                $("#assigncase").show();
+            })
+            $("#cancelbtn").hide();
+        })
+
     </script>
 
+
     <script src="../js/process_case_detail.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 </body>
 
