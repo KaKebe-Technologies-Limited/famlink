@@ -17,6 +17,10 @@ class Cases
     private $datecreated;
     private $dateupdated;
     private $status;
+    private $phonenumber;
+    private $district;
+    private $subcounty;
+    private $parish;
     private $TABLE_NAME = "cases";
  
 
@@ -26,7 +30,7 @@ class Cases
         $this->con = $con;
         $this->id = $id;
 
-        $query = mysqli_query($this->con, "SELECT `id`, `picture`,`title`, `description`, `location`, `longitude`, `latitude`, `category_id`, `reportedby_id`, `datecreated`, `dateupdated`, `status` FROM ".$this->TABLE_NAME." WHERE id = $this->id ");
+        $query = mysqli_query($this->con, "SELECT * FROM ".$this->TABLE_NAME." WHERE id = $this->id ");
         $case_fetched = mysqli_fetch_array($query);
 
 
@@ -44,6 +48,10 @@ class Cases
             $this->datecreated = null;
             $this->dateupdated = null;
             $this->status = null;
+            $this->phonenumber = null;
+            $this->district = null;
+            $this->subcounty = null;
+            $this->parish = null;
         } else {
 
             $this->id = $case_fetched['id'];
@@ -58,6 +66,10 @@ class Cases
             $this->datecreated = $case_fetched['datecreated'];
             $this->dateupdated = $case_fetched['dateupdated'];
             $this->status = $case_fetched['status'];
+            $this->phonenumber = $case_fetched['contact'];
+            $this->district = $case_fetched['district'];
+            $this->subcounty = $case_fetched['sub_county'];
+            $this->parish = "";
 
         }
     }
@@ -161,6 +173,22 @@ class Cases
 
     public  function getStatusID(){
         return $this->status;
+    }
+    
+    public  function getPhoneNumber(){
+        return $this->phonenumber;
+    }
+   
+    public  function getDistrict(){
+        return $this->district;
+    }
+    
+    public  function getSubCounty(){
+        return $this->subcounty;
+    }
+    
+    public  function getParish(){
+        return $this->parish;
     }
 
 

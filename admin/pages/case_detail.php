@@ -182,6 +182,26 @@ require("../queries/classes/Cases.php");
                                                 <h5><?= $order->getReportedbyUser() ?></h5>
                                             </div>
 
+                                            <div class="ordertimediv">
+                                                <h6>Phone number</h6>
+                                                <h5><?= $order->getPhoneNumber() ?></h5>
+                                            </div>
+                                            
+                                            <div class="ordertimediv">
+                                                <h6>District</h6>
+                                                <h5><?= $order->getDistrict() ?></h5>
+                                            </div>
+                                           
+                                            <div class="ordertimediv">
+                                                <h6>Sub county</h6>
+                                                <h5><?= $order->getSubCounty() ?></h5>
+                                            </div>
+                                            
+                                            <div class="ordertimediv">
+                                                <h6>Parish</h6>
+                                                <h5><?= $order->getParish() ?></h5>
+                                            </div>
+
                                         </div>
 
 
