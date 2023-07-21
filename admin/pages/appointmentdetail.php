@@ -63,28 +63,33 @@ require('../queries/appointment_canceled_query.php');
         </li>
 
         <ul class="menu-links">
-          <li class="nav-link ">
-            <a href="../index">
-              <i class='bx bx-home-alt icon'></i>
-              <span class="text nav-text">Dashboard</span>
-            </a>
-          </li>
+            <li class="nav-link ">
+                <a href="../index">
+                <i class='bx bx-home-alt icon'></i>
+                <span class="text nav-text">Dashboard</span>
+                </a>
+            </li>
 
-          <li class="nav-link ">
-            <a href="cases">
-              <i class='bx bx-bar-chart-alt-2 icon'></i>
-              <span class="text nav-text">Cases</span>
-            </a>
-          </li>
+            <li class="nav-link ">
+                <a href="cases">
+                <i class='bx bx-bar-chart-alt-2 icon'></i>
+                <span class="text nav-text">Cases</span>
+                </a>
+            </li>
 
-          <li class="nav-link active">
-            <a href="appointments">
-              <i class='bx bx-bell icon'></i>
-              <span class="text nav-text">Appointments</span>
-            </a>
-          </li>
+            <li class="nav-link active">
+                <a href="appointments">
+                <i class='bx bx-bell icon'></i>
+                <span class="text nav-text">Appointments</span>
+                </a>
+            </li>
 
-
+            <li class="nav-link">
+                <a href="users.php">
+                <i class='bx bx-pie-chart-alt icon'></i>
+                <span class="text nav-text">Users</span>
+                </a>
+            </li>
 
         </ul>
       </div>
@@ -107,36 +112,20 @@ require('../queries/appointment_canceled_query.php');
         <div class="mainpanel">
             <div class="elements">
                 <div class="activities">
-
-
                     <?php
                     $order = new Appointment($con, $orderid);
 
                     if ($order->getId() != null) :
                     ?>
-
-
-
-
                         <div class="elements">
-
-
                             <div class="activities">
-
                                 <div class="cartitemcontainer">
-
-
                                     <div class="cartItem">
-
-
                                         <div class="sectionheading">
                                             <h3 class="sectionlable">Appointment Details</h3>
-
                                         </div>
 
-
                                         <div class="orderheading">
-
                                             <div class="ordertimediv">
                                                 <h6>ID</h6>
                                                 <h5><?= $order->getId() ?></h5>

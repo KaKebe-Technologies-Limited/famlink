@@ -35,17 +35,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mypassword = mysqli_real_escape_string($con, $_POST['password']);
             $encryptedpw = md5($mypassword);
 
-            $statement = $con->prepare('SELECT * FROM users WHERE  email=? AND password =? AND userRole = "2" limit 1');
+            //i have added the userRole 3
+            // 1 - ordinary user
+            // 2 - superadmin
+            //3 - admin
+
+            $statement = $con->prepare('SELECT * FROM users WHERE  email=? AND password =? AND (userRole = "2" OR userRole = "3") limit 1');
             $statement->bind_param('ss', $myuseremail, $encryptedpw);
             if ($statement->execute()) {
-                $statement->store_result();
-                $statement->fetch();
-                if ($statement->num_rows == 1) {
-                    $_SESSION['login_user'] = $myuseremail;
-                    header("location: index.php");
-                } else {
-                    $error = "Login Failed, Ensure Password and Email is Correct and Try Again";
-                    echo "<script>showerror();</script>";
+                $result = $statement->get_result();
+                // $statement->store_result();
+                // $statement->fetch();
+                if ($result) {
+                    if ($result->num_rows == 1) {
+                        $row = $result->fetch_assoc();
+                        $_SESSION['login_user'] = $myuseremail;
+                        $_SESSION['role'] = $row["userRole"];
+                        $_SESSION['username'] = $row["full_name"];
+                        $_SESSION['user_id'] = $row["user_id"];
+                        header("location: index.php");
+                        exit;
+                    }else{
+                        $error = "Login Failed, Ensure Password and Email is Correct and Try Again";
+                        echo "<script>showerror();</script>";
+                    }
                 }
             } else {
                 $error = "Login Failed, Ensure Password and Email is Correct and Try Again";

@@ -9,6 +9,7 @@ require('../session.php');
 require('../queries/statsquery.php');
 require("../queries/classes/User.php");
 require("../queries/classes/Cases.php");
+require("../queries/classes/admins.php");
 
 
 ?>
@@ -32,8 +33,42 @@ require("../queries/classes/Cases.php");
 
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
     <title>Case Detail</title>
+    <style>
+         .select2-container--classic .select2-dropdown {
+            max-height: 200px; /* Set your desired height */
+            overflow-y: auto;
+        }
+        .modal-content {
+            width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Close button (optional) */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
 
 </head>
 
@@ -84,33 +119,11 @@ require("../queries/classes/Cases.php");
             </a>
           </li>
           <li class="nav-link">
-            <a href="#">
+            <a href="users.php">
                 <i class='bx bx-pie-chart-alt icon'></i>
                 <span class="text nav-text">Users</span>
             </a>
             </li>
-
-          <!-- <li class="nav-link">
-            <a href="#">
-              <i class='bx bx-pie-chart-alt icon'></i>
-              <span class="text nav-text">Analytics</span>
-            </a>
-          </li>
-
-          <li class="nav-link">
-            <a href="#">
-              <i class='bx bx-heart icon'></i>
-              <span class="text nav-text">Likes</span>
-            </a>
-          </li>
-
-          <li class="nav-link">
-            <a href="#">
-              <i class='bx bx-wallet icon'></i>
-              <span class="text nav-text">Wallets</span>
-            </a>
-          </li> -->
-
         </ul>
       </div>
 
@@ -137,6 +150,7 @@ require("../queries/classes/Cases.php");
 
                     <?php
                     $order = new Cases($con, $orderid);
+                    $adminUsers = new AdminUsers($con);
 
                     if ($order->getId() != null) :
                     ?>
@@ -182,6 +196,26 @@ require("../queries/classes/Cases.php");
                                                 <h5><?= $order->getReportedbyUser() ?></h5>
                                             </div>
 
+                                            <div class="ordertimediv">
+                                                <h6>Phone number</h6>
+                                                <h5><?= $order->getPhoneNumber() ?></h5>
+                                            </div>
+                                            
+                                            <div class="ordertimediv">
+                                                <h6>District</h6>
+                                                <h5><?= $order->getDistrict() ?></h5>
+                                            </div>
+                                           
+                                            <div class="ordertimediv">
+                                                <h6>Sub county</h6>
+                                                <h5><?= $order->getSubCounty() ?></h5>
+                                            </div>
+                                            
+                                            <div class="ordertimediv">
+                                                <h6>Parish</h6>
+                                                <h5><?= $order->getParish() ?></h5>
+                                            </div>
+
                                         </div>
 
 
@@ -201,6 +235,12 @@ require("../queries/classes/Cases.php");
                                                 <button class="cancelbutton">Delete Case</button>
                                             </div>
 
+                                            <div class="assignCaseButton" style="margin-left:20px"  aria-disabled="true">
+                                                <input class="order_id_input" type="hidden" name="orderID" value="<?= $order->getId() ?>">
+                                                <input class="order_status_id" type="hidden" name="order_status_id" value="<?= $order->getStatusID() ?>">
+                                                <button  id="modalTrigger">Assign Case</button>
+                                            </div>
+
                                             <?php if ( $order->getStatusID() < 3) : ?>
                                             <div class="approvebutton_parent">
                                                 <input class="order_id_input" type="hidden" name="orderID" value="<?= $order->getId() ?>">
@@ -214,6 +254,8 @@ require("../queries/classes/Cases.php");
                                                     <button class="approvebutton">Approve Case</button>
                                                 </div>
                                             <?php endif ?>
+
+                                            
 
                                         </div>
                                     </div>
@@ -263,6 +305,47 @@ require("../queries/classes/Cases.php");
                             </div>
                         </div>
 
+                        <!-- modal to assign a case to another user -->
+                        <div class="modal-overlay">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <!-- Your modal content goes here -->
+                                <div>
+                                    <div class="form-group">
+                                        <input id="childnameinput" type="hidden" name="childname" class="form-control" placeholder="order_id" disabled>
+                                        <input id="order_status_id" type="hidden" name="order_status" class="form-control" placeholder="order_status" disabled>
+                                    </div>
+
+                                    <div>
+                                        <h3>Assign Case</h3>
+                                        <p style="font-size:16px;opacity:.6">Assign case to another admin user.</p>
+                                    </div>
+                                    <div style="margin-top:20px">
+                                        <select id="searchableSelect" name="admin_name" class="form-control">
+                                            <option disabled selected >Select</option>
+                                            <?php  
+                                                foreach ($adminUsers->getUsers() as $key ) {?>
+                                                <option
+                                                    value="<?php echo $key["user_id"]?>"
+                                                >
+                                                    <?php echo $key["full_name"];}?>
+                                                </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group" style="margin-top:20px">
+                                    <input type="submit" value="Assign" id="assignButton" style="width: 100% !important;" class="sponsorchildnowbtn">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" id="cancelbtn" style="background: #fff;border: 1px solid #000;padding: 10px 20px;width: 100%;color: #000; border-radius: 5px;" onclick="cancelsponsohip()">Cancel
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+        
+                        <!-- end of the assign case modal -->
                         <!--        loader-->
                         <div class="loaderdiv">
                             <div class="loader-container">
@@ -283,6 +366,18 @@ require("../queries/classes/Cases.php");
             </div>
         </div>
 
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
+            <div class="toast-header">
+                <strong class="mr-auto">Notification</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                This is a toast notification.
+            </div>
+         </div>
+
     </section>
 
     <script>
@@ -302,19 +397,81 @@ require("../queries/classes/Cases.php");
             sidebar.classList.remove("close");
         })
 
-        // modeSwitch.addEventListener("click", () => {
-        //     body.classList.toggle("dark");
-        //
-        //     if (body.classList.contains("dark")) {
-        //         modeText.innerText = "Light mode";
-        //     } else {
-        //         modeText.innerText = "Dark mode";
-        //
-        //     }
-        // });
+        $(document).ready(function () {
+            $('#searchableSelect').select2({
+                width: '100%', 
+                height:'100px'
+            });
+                                               
+                             
+
+            $("#assignButton").click(function(){
+                let caseId = $(".order_id_input").val();
+                let statusId = $(".order_status_id").val();
+                let assigned_staff = $("#searchableSelect").val();
+                console.log(caseId);
+                console.log(statusId);
+                
+                if(assigned_staff){
+
+                    let formdata = new FormData();
+                    formdata.append("staff_id",assigned_staff);
+                    formdata.append("case_id",caseId);
+                    formdata.append("status_id",statusId);
+
+                    $.ajax({
+                        type:"POST",
+                        url:"./processors/assign_case_query.php",
+                        data: formdata,
+                        dataType: "json",
+                        enctype: "multipart/form-data",
+                        contentType:false,
+                        processData: false,
+                        success(data) {
+                            console.log(data);
+                            if(data === "success"){
+                                $('.toast').toast('show');
+                            }else{
+                                console.log(data);
+                            }
+                        }
+                    })
+                    
+                }else{
+                    console.log("No staff");
+                }
+                console.log(assigned_staff);
+                $("#assigncase").show();
+            })
+
+            $("#cancelbtn").click(function(){
+                $(".modal-overlay").fadeOut();
+            })
+
+            $("#modalTrigger").click(function () {
+                $(".modal-overlay").fadeIn();
+            });
+
+            // Close the modal when the close button is clicked
+            $(".close").click(function () {
+                $(".modal-overlay").fadeOut();
+            });
+
+            // Close the modal when clicking outside the modal content
+            $(window).click(function (event) {
+                if (event.target.className === "modal-overlay") {
+                    $(".modal-overlay").fadeOut();
+                }
+            });
+        })
+
     </script>
 
+
     <script src="../js/process_case_detail.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
 
 </body>
 

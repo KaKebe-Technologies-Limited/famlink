@@ -7,10 +7,9 @@ require('../session.php');
 require('../queries/statsquery.php');
 require('../queries/case_new_query.php');
 require "../queries/classes/User.php";
-require("../queries/classes/Cases.php");
+require("../queries/classes/all_users.php");
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -89,8 +88,6 @@ require("../queries/classes/Cases.php");
                     <span class="text nav-text">Users</span>
                   </a>
                 </li>
-
-
             </ul>
         </div>
 
@@ -101,143 +98,80 @@ require("../queries/classes/Cases.php");
                     <span class="text nav-text">Logout</span>
                 </a>
             </li>
-
-
         </div>
     </div>
-
 </nav>
+
+<?php
+    $users = new AllUsers($con);
+?>
 
 <section class="home">
     <div class="mainpanel">
         <div class="elements">
             <div class="activities">
-
-
-
                 <div class="sectionheading">
-                    <h3 class="sectionlable">Reported Cases</h3>
-                    <h6 class="sectionlable">Manage all Cases Here</h6>
+                    <h3 class="sectionlable">Registered users</h3>
+                    <h6 class="sectionlable">View all signed up users.</h6>
                 </div>
-
 
                 <div class="orderfilter">
-
-
                     <a href="#">
-                        <div class="filterorder filter_active">New <span class="noti circle"><?= $total_newCases ?></span></div>
+                        <div class="filterorder filter_active">Total<span class="noti circle"><?= $users->getTotal() ?></span></div>
                     </a>
-
-
                     <a href="cases_approved.php">
-                        <div class="filterorder">Approved <span class="noti circlenotactive"><?= $total_approvedCases ?></span></div>
+                        <div class="filterorder">SuperAdmin <span class="noti circlenotactive"><?= $users->countSuperAdmin() ?></span></div>
                     </a>
-
-
                     <a href="cases_handled.php">
-                        <div class="filterorder">Completed <span class="noti circlenotactive"><?= $total_handledCases ?></span></div>
+                        <div class="filterorder">Admins <span class="noti circlenotactive"><?= $users->countAdmin() ?></span></div>
                     </a>
-
-
                 </div>
 
 
-
-                <div class="case_div">
-
-
-                    <?php if ($caseNew) : ?>
-
-                        <div class="childrencontainer">
-
-
-                            <?php
-                            foreach ($caseNew as $row) :
-                                ?>
-
-
-                                <?php
-                                $order = new Cases($con, $row);
-                                ?>
-
-                                <div class="product-card">
-
-                                    <div class="imagecontainer">
-                                        <div class="imgtext">
-                                            <h5 class="casetitle"><?= $order->getReportedbyUser() ?></h5>
-                                            <p class="case_info"><?= $order->getDatecreated() ?> </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="casedescription">
-                                        <h1><?= $order->getTitle() ?></h1>
-                                        <p><?= $order->getDescription() ?> </p>
-                                        <p><span class="categoryid">Tag: <?= $order->getCategoryId() ?></span> <span class="case_location">Address: <?= $order->getLocation() ?> </span> </p>
-
-                                    </div>
-
-
-                                    <input type="hidden" name="artistid" value="<?= $order->getId() ?>">
-
-                                    <div class="product-card__actions">
-                                        <a href="
-                                        case_detail.php?id=<?= $order->getId() ?>" class="btn btn-primary my-2  sponsorbutton">View Details</a>
-                                    </div>
-                                </div>
-
-                            <?php endforeach ?>
-
-                        </div>
-
-
-                    <?php else :  ?>
-                        No New Cases
-                    <?php endif ?>
-
-
-
-
-
+                <div >
+                   
+                    <table class="table table-responsive table-stripped">
+                        <thead>
+                            <th>Name</th>
+                            <th>Email</th>                            
+                            <th>Contact</th>
+                            <th>Permissions</th>
+                        </thead>
+                        <tbody>
+                            <?php 
+                                
+                                foreach($users->getUsers() as $user){?>
+                                    <tr>
+                                        <td><?php echo $user["full_name"]?></td>
+                                        <td><?php echo $user["email"]?></td>
+                                        <td><?php echo $user["phone_number"]?></td>
+                                        <td>
+                                            <?php 
+                                                if($user["userRole"] == 2){
+                                                    echo "Super Admin";
+                                                }
+                                                if($user["userRole"] == 3){
+                                                    echo "Admin";
+                                                }                                                
+                                                if($user["userRole"] == 1){
+                                                    echo "User";
+                                                }                                        
+                                            ?>
+                                        </td>
+                                    </tr>
+                                <?php }
+                            ?>
+                            
+                        </tbody>
+                    </table>
                 </div>
-
             </div>
-
         </div>
     </div>
 
 </section>
 
-<script>
-    const body = document.querySelector('body'),
-        sidebar = body.querySelector('nav'),
-        toggle = body.querySelector(".toggle"),
-        searchBtn = body.querySelector(".search-box"),
-        // modeSwitch = body.querySelector(".toggle-switch"),
-        modeText = body.querySelector(".mode-text");
-
-
-    toggle.addEventListener("click", () => {
-        sidebar.classList.toggle("close");
-    })
-
-    searchBtn.addEventListener("click", () => {
-        sidebar.classList.remove("close");
-    })
-
-    // modeSwitch.addEventListener("click", () => {
-    //     body.classList.toggle("dark");
-    //
-    //     if (body.classList.contains("dark")) {
-    //         modeText.innerText = "Light mode";
-    //     } else {
-    //         modeText.innerText = "Dark mode";
-    //
-    //     }
-    // });
-</script>
-
 <script src="../js/process_case_detail.js"></script>
 
 </body>
-
 </html>
