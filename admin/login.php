@@ -52,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['login_user'] = $myuseremail;
                         $_SESSION['role'] = $row["userRole"];
                         $_SESSION['username'] = $row["full_name"];
+                        $_SESSION['user_id'] = $row["user_id"];
                         header("location: index.php");
                         exit;
                     }else{
