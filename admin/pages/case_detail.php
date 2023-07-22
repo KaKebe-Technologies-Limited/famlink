@@ -41,6 +41,33 @@ require("../queries/classes/admins.php");
             max-height: 200px; /* Set your desired height */
             overflow-y: auto;
         }
+        .modal-content {
+            width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Close button (optional) */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
     </style>
 
 </head>
@@ -233,7 +260,7 @@ require("../queries/classes/admins.php");
                                             <div class="assignCaseButton" style="margin-left:20px"  aria-disabled="true">
                                                 <input class="order_id_input" type="hidden" name="orderID" value="<?= $order->getId() ?>">
                                                 <input class="order_status_id" type="hidden" name="order_status_id" value="<?= $order->getStatusID() ?>">
-                                                <button class="assignButton" >Assign Case</button>
+                                                <button  id="modalTrigger">Assign Case</button>
                                             </div>
 
                                             <?php if ( $order->getStatusID() < 3) : ?>
@@ -301,44 +328,45 @@ require("../queries/classes/admins.php");
                         </div>
 
                         <!-- modal to assign a case to another user -->
-                            <div class="sponserdiv" id="assigncase" >
-                                <div class="sponsorshipform" style="margin:auto;width:400px;position: fixed;top: 30%; left: 50%;">
-                                    <div class="sponsormessagediv">
-
+                        <div class="modal-overlay">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <!-- Your modal content goes here -->
+                                <div>
+                                    <div class="form-group">
+                                        <input id="childnameinput" type="hidden" name="childname" class="form-control" placeholder="order_id" disabled>
+                                        <input id="order_status_id" type="hidden" name="order_status" class="form-control" placeholder="order_status" disabled>
                                     </div>
-                                    <form id="assignCase" action="" method="POST">
 
-                                        <div class="form-group">
-                                            <input id="childnameinput" type="hidden" name="childname" class="form-control" placeholder="order_id" disabled>
-                                            <input id="order_status_id" type="hidden" name="order_status" class="form-control" placeholder="order_status" disabled>
-                                        </div>
-
-                                        <div>
-                                            <h3>Assign Case</h3>
-                                            <p style="font-size:16px;opacity:.6">Assign case to another admin user.</p>
-                                        </div>
-                                        <select id="searchableSelect" class="form-control" style="margin-top:20px">
-                                            <option disabled selected style="padding:10px">Select</option>
+                                    <div>
+                                        <h3>Assign Case</h3>
+                                        <p style="font-size:16px;opacity:.6">Assign case to another admin user.</p>
+                                    </div>
+                                    <div style="margin-top:20px">
+                                        <select id="searchableSelect" name="admin_name" class="form-control">
+                                            <option disabled selected >Select</option>
                                             <?php  
                                                 foreach ($adminUsers->getUsers() as $key ) {?>
                                                 <option
                                                     value="<?php echo $key["user_id"]?>"
                                                 >
                                                     <?php echo $key["full_name"];}?>
-                                            </option>
+                                                </option>
                                         </select>
+                                    </div>
 
-                                        <div class="form-group" style="margin-top:10px">
-                                            <input type="submit" value="Assign" style="width: 100% !important;" class="sponsorchildnowbtn">
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="reset" id="cancelbtn" style="background: #fff;border: 1px solid #000;padding: 10px 20px;width: 100%;color: #000; border-radius: 5px;" onclick="cancelsponsohip()">Cancel
-                                            </button>
-                                        </div>
-                                    </form>
-
+                                    <div class="form-group" style="margin-top:20px">
+                                    <input type="submit" value="Assign" id="assignButton" style="width: 100% !important;" class="sponsorchildnowbtn">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" id="cancelbtn" style="background: #fff;border: 1px solid #000;padding: 10px 20px;width: 100%;color: #000; border-radius: 5px;" onclick="cancelsponsohip()">Cancel
+                                        </button>
+                                    </div>
                                 </div>
+
                             </div>
+                        </div>
+        
                         <!-- end of the assign case modal -->
                         <!--        loader-->
                         <div class="loaderdiv">
@@ -360,6 +388,18 @@ require("../queries/classes/admins.php");
             </div>
         </div>
 
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
+            <div class="toast-header">
+                <strong class="mr-auto">Notification</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                This is a toast notification.
+            </div>
+         </div>
+
     </section>
 
     <script>
@@ -379,29 +419,72 @@ require("../queries/classes/admins.php");
             sidebar.classList.remove("close");
         })
 
-        // modeSwitch.addEventListener("click", () => {
-        //     body.classList.toggle("dark");
-        //
-        //     if (body.classList.contains("dark")) {
-        //         modeText.innerText = "Light mode";
-        //     } else {
-        //         modeText.innerText = "Dark mode";
-        //
-        //     }
-        // });
         $(document).ready(function () {
             $('#searchableSelect').select2({
                 width: '100%', 
                 height:'100px'
             });
-            $(".assignButton").click(function(){
-                var caseId = $(".order_id_input").val();
-                var statusId = $(".order_status_id").val();
+                                               
+                             
+
+            $("#assignButton").click(function(){
+                let caseId = $(".order_id_input").val();
+                let statusId = $(".order_status_id").val();
+                let assigned_staff = $("#searchableSelect").val();
                 console.log(caseId);
                 console.log(statusId);
+                
+                if(assigned_staff){
+
+                    let formdata = new FormData();
+                    formdata.append("staff_id",assigned_staff);
+                    formdata.append("case_id",caseId);
+                    formdata.append("status_id",statusId);
+
+                    $.ajax({
+                        type:"POST",
+                        url:"./processors/assign_case_query.php",
+                        data: formdata,
+                        dataType: "json",
+                        enctype: "multipart/form-data",
+                        contentType:false,
+                        processData: false,
+                        success(data) {
+                            console.log(data);
+                            if(data === "success"){
+                                $('.toast').toast('show');
+                            }else{
+                                console.log(data);
+                            }
+                        }
+                    })
+                    
+                }else{
+                    console.log("No staff");
+                }
+                console.log(assigned_staff);
                 $("#assigncase").show();
             })
-            $("#cancelbtn").hide();
+
+            $("#cancelbtn").click(function(){
+                $(".modal-overlay").fadeOut();
+            })
+
+            $("#modalTrigger").click(function () {
+                $(".modal-overlay").fadeIn();
+            });
+
+            // Close the modal when the close button is clicked
+            $(".close").click(function () {
+                $(".modal-overlay").fadeOut();
+            });
+
+            // Close the modal when clicking outside the modal content
+            $(window).click(function (event) {
+                if (event.target.className === "modal-overlay") {
+                    $(".modal-overlay").fadeOut();
+                }
+            });
         })
 
     </script>
@@ -410,6 +493,7 @@ require("../queries/classes/admins.php");
     <script src="../js/process_case_detail.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
 
 </body>
 
