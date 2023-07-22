@@ -173,9 +173,21 @@ require("../queries/classes/all_users.php");
         </div>
     </div>
 
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Modal Title</h2>
+            <p>This is a simple modal example.</p>
+        </div>
+    </div>
 </section>
 
 <script src="../js/process_case_detail.js"></script>
+<script>
+    $(document).ready(function () {
+       
+    })
+</script>
 
 </body>
 </html>

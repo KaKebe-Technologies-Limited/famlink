@@ -67,6 +67,10 @@ cancelORderBTn.forEach((cancelbtn) => {
 });
 
 $(document).ready(function () {
+    $(".btn-primary").click(function(){
+      $(".modal").show()
+    });
+    
   $("form").submit(function (event) {
     var formData = {
       childname: $("#childnameinput").val(),
