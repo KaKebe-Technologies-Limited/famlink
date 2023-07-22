@@ -5,12 +5,11 @@ $con = $db->getConnString();
 
 require('../session.php');
 require('../queries/statsquery.php');
-require('../queries/case_canceled_query.php');
+require('../queries/case_new_query.php');
 require "../queries/classes/User.php";
 require("../queries/classes/Cases.php");
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -32,7 +31,7 @@ require("../queries/classes/Cases.php");
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
-    <title>Cases Handled</title>
+    <title>Cases</title>
 
 </head>
 
@@ -63,7 +62,7 @@ require("../queries/classes/Cases.php");
 
             <ul class="menu-links">
                 <li class="nav-link ">
-                    <a href="../index">
+                    <a href="../index.php">
                         <i class='bx bx-home-alt icon'></i>
                         <span class="text nav-text">Dashboard</span>
                     </a>
@@ -77,7 +76,7 @@ require("../queries/classes/Cases.php");
                 </li>
 
                 <li class="nav-link ">
-                    <a href="appointments">
+                    <a href="appointments.php">
                         <i class='bx bx-bell icon'></i>
                         <span class="text nav-text">Appointments</span>
                     </a>
@@ -99,60 +98,46 @@ require("../queries/classes/Cases.php");
                     <span class="text nav-text">Logout</span>
                 </a>
             </li>
-
         </div>
     </div>
 
 </nav>
 
+
 <section class="home">
     <div class="mainpanel">
         <div class="elements">
             <div class="activities">
-
-
-
                 <div class="sectionheading">
                     <h3 class="sectionlable">Reported Cases</h3>
                     <h6 class="sectionlable">Manage all Cases Here</h6>
                 </div>
 
-
                 <div class="orderfilter">
-
-
-                    <a href="cases.php">
-                        <div class="filterorder ">New <span class="noti circlenotactive"><?= $total_newCases ?></span></div>
+                    <a href="#">
+                        <div class="filterorder filter_active">New <span class="noti circle"><?= $total_newCases ?></span></div>
                     </a>
 
 
                     <a href="cases_approved.php">
-                        <div class="filterorder ">Approved <span class="noti circlenotactive"><?= $total_approvedCases ?></span></div>
+                        <div class="filterorder">Approved <span class="noti circlenotactive"><?= $total_approvedCases ?></span></div>
                     </a>
 
 
                     <a href="cases_handled.php">
-                        <div class="filterorder filter_active">Handled <span class="noti circle"><?= $total_handledCases ?></span></div>
+                        <div class="filterorder">Completed <span class="noti circlenotactive"><?= $total_handledCases ?></span></div>
                     </a>
-
-
                 </div>
-
 
 
                 <div class="case_div">
 
-
                     <?php if ($caseNew) : ?>
 
                         <div class="childrencontainer">
-
-
                             <?php
                             foreach ($caseNew as $row) :
                                 ?>
-
-
                                 <?php
                                 $order = new Cases($con, $row);
                                 ?>
@@ -173,7 +158,6 @@ require("../queries/classes/Cases.php");
 
                                     </div>
 
-
                                     <input type="hidden" name="artistid" value="<?= $order->getId() ?>">
 
                                     <div class="product-card__actions">
@@ -183,58 +167,20 @@ require("../queries/classes/Cases.php");
                                 </div>
 
                             <?php endforeach ?>
-
                         </div>
 
 
                     <?php else :  ?>
                         No New Cases
                     <?php endif ?>
-
-
-
-
-
                 </div>
-
             </div>
-
         </div>
     </div>
 
 </section>
 
-<script>
-    const body = document.querySelector('body'),
-        sidebar = body.querySelector('nav'),
-        toggle = body.querySelector(".toggle"),
-        searchBtn = body.querySelector(".search-box"),
-        // modeSwitch = body.querySelector(".toggle-switch"),
-        modeText = body.querySelector(".mode-text");
-
-
-    toggle.addEventListener("click", () => {
-        sidebar.classList.toggle("close");
-    })
-
-    searchBtn.addEventListener("click", () => {
-        sidebar.classList.remove("close");
-    })
-
-    // modeSwitch.addEventListener("click", () => {
-    //     body.classList.toggle("dark");
-    //
-    //     if (body.classList.contains("dark")) {
-    //         modeText.innerText = "Light mode";
-    //     } else {
-    //         modeText.innerText = "Dark mode";
-    //
-    //     }
-    // });
-</script>
-
 <script src="../js/process_case_detail.js"></script>
 
 </body>
-
 </html>
