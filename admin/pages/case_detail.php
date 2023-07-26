@@ -398,6 +398,7 @@ require("../queries/classes/admins.php");
         })
 
         $(document).ready(function () {
+            $(".modal-overlay").fadeOut();
             $('#searchableSelect').select2({
                 width: '100%', 
                 height:'100px'
@@ -442,8 +443,9 @@ require("../queries/classes/admins.php");
                 }
                 console.log(assigned_staff);
                 $("#assigncase").show();
-            })
+            });
 
+            
             $("#cancelbtn").click(function(){
                 $(".modal-overlay").fadeOut();
             })
