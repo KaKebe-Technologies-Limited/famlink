@@ -36,6 +36,70 @@ require("../queries/classes/all_users.php");
 </head>
 
 <body>
+<style>
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dee2e6;
+}
+
+.table-sm th,
+.table-sm td {
+  padding: 0.3rem;
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #dee2e6;
+}
+
+.table-bordered thead th,
+.table-bordered thead td {
+  border-bottom-width: 2px;
+}
+/* .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.modal {
+    display:none;
+  width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+button {
+  margin-top: 10px;
+}
+</style>
 <nav class="sidebar">
     <header>
         <div class="image-text">
@@ -136,7 +200,7 @@ require("../queries/classes/all_users.php");
                             <th>Email</th>                            
                             <th>Contact</th>
                             <th>Permissions</th>
-                            <td></td>
+                            <th></th>
                         </thead>
                         <tbody>
                             <?php 
@@ -160,7 +224,7 @@ require("../queries/classes/all_users.php");
                                             ?>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary">Manage User</button>
+                                            <button class="btn btn-primary" onclick="manageMember(<?php echo $user['user_id']?>)">Manage User</button>
                                         </td>
                                     </tr>
                                 <?php }
@@ -180,13 +244,36 @@ require("../queries/classes/all_users.php");
             <p>This is a simple modal example.</p>
         </div>
     </div>
+
+    <div class="modal-overlay" v-if="showModal">
+        <div class="modal">
+            <h3>Set Role</h3>
+            <select v-model="selectedRole" class="form-control">
+                <option value="3">Admin</option>
+                <option value="2">Super Admin</option>
+                <option value="1">User</option>
+            </select>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-success" onclick="closeModal()">Submit</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-danger" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+            
+        </div>
+  </div>
 </section>
 
 <script src="../js/process_case_detail.js"></script>
 <script>
     $(document).ready(function () {
        
-    })
+    });
+    function manageMember(id){
+        console.log(id)
+    }
 </script>
 
 </body>
