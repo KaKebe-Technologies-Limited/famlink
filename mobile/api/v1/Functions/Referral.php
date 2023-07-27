@@ -22,7 +22,7 @@ class Referral
 	public $subCounty;
 	public $district;
 	public $anysupport;
-
+	public $parish;
 
 	public $status;
 	// order private
@@ -41,7 +41,7 @@ class Referral
 	function create()
 	{
 
-		$stmt = $this->conn->prepare("INSERT INTO " . $this->cases . "(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`,`victim_name`,`victim_gender`,`victim_age`,`region`,`contact`,`village`,`sub_county`,`district`,`any_support`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		$stmt = $this->conn->prepare("INSERT INTO " . $this->cases . "(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`,`victim_name`,`victim_gender`,`victim_age`,`region`,`contact`,`village`,`sub_county`,`district`,`any_support`,`parish`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 		$this->title = htmlspecialchars(strip_tags($this->title));
 		$this->picture = htmlspecialchars(strip_tags($this->picture));
@@ -60,9 +60,11 @@ class Referral
 		$sub_county = htmlspecialchars(strip_tags($sub_county));
 		$district = htmlspecialchars(strip_tags($district));
 		$anysupport = htmlspecialchars(strip_tags($anysupport));
+		$parish = htmlspecialchars(strip_tags($parish));
 
 
-        $stmt->bind_param("sssssiississssss", $this->title, $this->picture, $this->description, $this->category_id, $this->address, $this->reportedby_id, $this->status,$this->victim_name,$this->gender,$this->age,$this->region,$this->contact,$this->village,$this->subCounty,$this->district,$this->anysupport);
+
+        $stmt->bind_param("sssssiississsssss", $this->title, $this->picture, $this->description, $this->category_id, $this->address, $this->reportedby_id, $this->status,$this->victim_name,$this->gender,$this->age,$this->region,$this->contact,$this->village,$this->subCounty,$this->district,$this->anysupport,$this->parish);
 
 		if ($stmt->execute()) {
 			$this->exe_status = "success";
