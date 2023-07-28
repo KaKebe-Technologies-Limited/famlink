@@ -203,36 +203,34 @@ button {
                    
                     <table class="table table-responsive table-stripped">
                         <thead>
-                            <th>Name</th>
-                            <th>Email</th>                            
+                            <th>Reported By</th>
+                            <th>Location</th>                            
+                            <th>Region</th>
                             <th>Contact</th>
-                            <th>Permissions</th>
-                            <th></th>
+                            <th>Gender</th> 
+                            <th>Age</th> 
+                            <th>Village</th>
+                            <th>Parish</th>
+                            <th>Sub County</th>
+                            <th>District</th>
+                            <th>Reported On</th>
                         </thead>
                         <tbody>
                             <?php 
                                 
-                                foreach($users->getUsers() as $user){?>
+                                foreach($users->userReportedCases() as $user){?>
                                     <tr>
-                                        <td><?php echo $user["full_name"]?></td>
-                                        <td><?php echo $user["email"]?></td>
-                                        <td><?php echo $user["phone_number"]?></td>
-                                        <td>
-                                            <?php 
-                                                if($user["userRole"] == 2){
-                                                    echo "Super Admin";
-                                                }
-                                                if($user["userRole"] == 3){
-                                                    echo "Admin";
-                                                }                                                
-                                                if($user["userRole"] == 1){
-                                                    echo "User";
-                                                }                                        
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary" onclick="manageMember(<?php echo $user['user_id']?>)">Manage User</button>
-                                        </td>
+                                        <td><?php echo $user["username"]?></td>
+                                        <td><?php echo $user["location"]?></td>
+                                        <td><?php echo $user["region"]?></td>
+                                        <td><?php echo $user["contact"]?></td>
+                                        <td><?php echo $user["victim_gender"]?></td>
+                                        <td><?php echo $user["victim_age"]?></td>
+                                        <td><?php echo $user["village"]?></td>
+                                        <td><?php echo $user["parish"]?></td>
+                                        <td><?php echo $user["sub_county"]?></td>
+                                        <td><?php echo $user["district"]?></td>
+                                        <td><?php echo $user["datecreated"]?></td>
                                     </tr>
                                 <?php }
                             ?>
