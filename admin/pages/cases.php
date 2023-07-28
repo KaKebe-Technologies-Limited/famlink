@@ -91,7 +91,13 @@ echo $_SESSION["role"];
                     <span class="text nav-text">Users</span>
                   </a>
                 </li>
-
+                
+                <li class="nav-link">
+                  <a href="manage_users.php">
+                  <i class='bx bx-user icon'></i>
+                    <span class="text nav-text">Manage Users</span>
+                  </a>
+                </li>
 
             </ul>
         </div>

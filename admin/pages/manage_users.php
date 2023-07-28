@@ -146,14 +146,14 @@ button {
                     </a>
                 </li>
 
-                <li class="nav-link active">
+                <li class="nav-link">
                   <a href="users.php">
                     <i class='bx bx-pie-chart-alt icon'></i>
                     <span class="text nav-text">Users</span>
                   </a>
                 </li>
 
-                <li class="nav-link">
+                <li class="nav-link active">
                   <a href="manage_users.php">
                   <i class='bx bx-user icon'></i>
                     <span class="text nav-text">Manage Users</span>
@@ -182,7 +182,7 @@ button {
         <div class="elements">
             <div class="activities">
                 <div class="sectionheading">
-                    <h3 class="sectionlable">Registered cases</h3>
+                    <h3 class="sectionlable">Registered users</h3>
                     <h6 class="sectionlable">View all signed up users.</h6>
                 </div>
 

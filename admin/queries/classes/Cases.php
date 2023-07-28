@@ -69,7 +69,7 @@ class Cases
             $this->phonenumber = $case_fetched['contact'];
             $this->district = $case_fetched['district'];
             $this->subcounty = $case_fetched['sub_county'];
-            $this->parish = "";
+            $this->parish = $case_fetched['parish'];
 
         }
     }
