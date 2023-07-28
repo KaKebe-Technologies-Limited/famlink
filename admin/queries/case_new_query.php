@@ -18,4 +18,7 @@ while ($row = mysqli_fetch_array($case_new_sql)) {
 
     array_push($caseNew, $row['id']);
 
+
+    
+
 }

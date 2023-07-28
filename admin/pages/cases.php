@@ -9,6 +9,8 @@ require('../queries/case_new_query.php');
 require "../queries/classes/User.php";
 require("../queries/classes/Cases.php");
 
+echo $_SESSION["role"];
+
 ?>
 
 
@@ -70,7 +72,7 @@ require("../queries/classes/Cases.php");
                 </li>
 
                 <li class="nav-link active">
-                    <a href="cases">
+                    <a href="cases.php">
                         <i class='bx bx-bar-chart-alt-2 icon'></i>
                         <span class="text nav-text">Cases</span>
                     </a>
