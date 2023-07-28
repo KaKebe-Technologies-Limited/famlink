@@ -8,7 +8,7 @@
 
         $user_id = mysqli_real_escape_string($con, $_POST['staff_id']);
         $case_id = mysqli_real_escape_string($con, $_POST['case_id']);
-        $status_id = mysqli_real_escape_string($con, $_POST['status_id']);
+        $status_id = mysqli_real_escape_string($con, $_POST['order_status']);
 
         $sql = "UPDATE cases set assigned_to = ? where id = ?";
         $stmt = $con->prepare($sql);
@@ -16,23 +16,12 @@
 
         if($stmt->execute()){
             echo json_encode("success");
-
-            $to = "matianyanzi@gmail.com";
-            $subject = "Test Email";
-
-            $headers = "From: matianyanzi@gmail.com\r\n";
-            $headers .= "Reply-To: nyanzimathiaz@gmail.com\r\n";
-
-            $message = "This is a test email sent from PHP.";
-
-            if (mail($to, $subject, $message,$headers)) {
-                echo "Email sent successfully.";
-            } else {
-                echo "Failed to send email.";
-            }
-
+            header('location:../cases.php');
+            exit;
         }else{
             echo json_encode("Failured");
+            header('location:../case_detail.php?id='.$case_id);
+            
         }
 
         $stmt->close();

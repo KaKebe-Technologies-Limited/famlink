@@ -4,6 +4,8 @@ class AllUsers{
     var $users;
     var $con;
     var $table = "users";
+    private $CASES_TABLE ="cases";
+
 
     public function __construct($con){
         $this->con = $con;
@@ -41,6 +43,23 @@ class AllUsers{
             $this->users[] = $row;
         }
         return count($this->users);
+    }
+
+    public function userReportedCases(){
+        $results = array();
+        $query = mysqli_query($this->con,"SELECT * FROM ".$this->CASES_TABLE." ORDER BY id DESC");
+        while ($row = mysqli_fetch_assoc($query)) {
+            $row["username"] = $this->getUserName($row["reportedby_id"]);
+            $results[] = $row;
+        }
+        return $results;
+    }
+
+    public function getUserName($id){
+        $sql = mysqli_query($this->con,"SELECT full_name FROM ".$this->table." WHERE user_id=".$id);
+        $result = mysqli_fetch_array($sql);
+        return $result["full_name"];
+
     }
 
 }

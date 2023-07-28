@@ -146,14 +146,14 @@ button {
                     </a>
                 </li>
 
-                <li class="nav-link active">
+                <li class="nav-link">
                   <a href="users.php">
                     <i class='bx bx-pie-chart-alt icon'></i>
                     <span class="text nav-text">Users</span>
                   </a>
                 </li>
 
-                <li class="nav-link">
+                <li class="nav-link active">
                   <a href="manage_users.php">
                   <i class='bx bx-user icon'></i>
                     <span class="text nav-text">Manage Users</span>
@@ -182,7 +182,7 @@ button {
         <div class="elements">
             <div class="activities">
                 <div class="sectionheading">
-                    <h3 class="sectionlable">Registered cases</h3>
+                    <h3 class="sectionlable">Registered users</h3>
                     <h6 class="sectionlable">View all signed up users.</h6>
                 </div>
 
@@ -203,34 +203,36 @@ button {
                    
                     <table class="table table-responsive table-stripped">
                         <thead>
-                            <th>Reported By</th>
-                            <th>Location</th>                            
-                            <th>Region</th>
+                            <th>Name</th>
+                            <th>Email</th>                            
                             <th>Contact</th>
-                            <th>Gender</th> 
-                            <th>Age</th> 
-                            <th>Village</th>
-                            <th>Parish</th>
-                            <th>Sub County</th>
-                            <th>District</th>
-                            <th>Reported On</th>
+                            <th>Permissions</th>
+                            <th></th>
                         </thead>
                         <tbody>
                             <?php 
                                 
-                                foreach($users->userReportedCases() as $user){?>
+                                foreach($users->getUsers() as $user){?>
                                     <tr>
-                                        <td><?php echo $user["username"]?></td>
-                                        <td><?php echo $user["location"]?></td>
-                                        <td><?php echo $user["region"]?></td>
-                                        <td><?php echo $user["contact"]?></td>
-                                        <td><?php echo $user["victim_gender"]?></td>
-                                        <td><?php echo $user["victim_age"]?></td>
-                                        <td><?php echo $user["village"]?></td>
-                                        <td><?php echo $user["parish"]?></td>
-                                        <td><?php echo $user["sub_county"]?></td>
-                                        <td><?php echo $user["district"]?></td>
-                                        <td><?php echo $user["datecreated"]?></td>
+                                        <td><?php echo $user["full_name"]?></td>
+                                        <td><?php echo $user["email"]?></td>
+                                        <td><?php echo $user["phone_number"]?></td>
+                                        <td>
+                                            <?php 
+                                                if($user["userRole"] == 2){
+                                                    echo "Super Admin";
+                                                }
+                                                if($user["userRole"] == 3){
+                                                    echo "Admin";
+                                                }                                                
+                                                if($user["userRole"] == 1){
+                                                    echo "User";
+                                                }                                        
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="manageMember(<?php echo $user['user_id']?>)">Manage User</button>
+                                        </td>
                                     </tr>
                                 <?php }
                             ?>

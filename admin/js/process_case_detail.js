@@ -71,7 +71,7 @@ $(document).ready(function () {
       $(".modal").show()
     });
     
-  $("form").submit(function (event) {
+  $("#approveform").submit(function (event) {
     var formData = {
       childname: $("#childnameinput").val(),
       orderstatus: $("#order_status_id").val(),

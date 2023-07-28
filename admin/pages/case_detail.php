@@ -124,6 +124,12 @@ require("../queries/classes/admins.php");
                 <span class="text nav-text">Users</span>
             </a>
             </li>
+            <li class="nav-link">
+                  <a href="manage_users.php">
+                  <i class='bx bx-user icon'></i>
+                    <span class="text nav-text">Manage Users</span>
+                  </a>
+                </li>
         </ul>
       </div>
 
@@ -274,31 +280,33 @@ require("../queries/classes/admins.php");
 
                                 </div>
                                 <form id="approveform" action="" method="POST">
-
-                                    <div class="form-group">
-                                        <input id="childnameinput" type="hidden" name="childname" class="form-control" placeholder="order_id" disabled>
-                                        <input id="order_status_id" type="hidden" name="order_status" class="form-control" placeholder="order_status" disabled>
-                                    </div>
-
-                                    <div class="approveorderform">
-                                        <h1>Approve</h1>
-                                        <p>All approved Cases are accessed through the Reported Case Page </p>
-                                    </div>
-
-                                    <div class="deleteorder" style="display: none;">
-                                        <h1>Delete Case</h1>
-                                        <p>This action can not be reversed when done! </p>
-                                    </div>
-
-                                    <input id="feedbackinput" type="text" placeholder="Feedback" class="form-control" required name="feedback">
-                                    <input style="display: none" disabled id="userID" value="<?= $order->getReportedbyId() ?>" type="text" placeholder="Feedback" class="form-control" required name="feedback">
-
-                                    <div class="form-group">
-                                        <input type="submit" value="Approve" style="width: 100% !important;" class="sponsorchildnowbtn">
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="reset" id="cancelbtn" style="background: #fff;border: 1px solid #000;padding: 10px 20px;width: 100%;color: #000; border-radius: 5px;" onclick="cancelsponsohip()">Cancel
-                                        </button>
+                                    <!-- approving and declining a case -->
+                                    <div class="approve">
+                                        <div class="form-group">
+                                            <input id="childnameinput" type="hidden" name="childname" class="form-control" placeholder="order_id" disabled>
+                                            <input id="order_status_id" type="hidden" name="order_status" class="form-control" placeholder="order_status" disabled>
+                                        </div>
+    
+                                        <div class="approveorderform">
+                                            <h1>Approve</h1>
+                                            <p>All approved Cases are accessed through the Reported Case Page </p>
+                                        </div>
+    
+                                        <div class="deleteorder" style="display: none;">
+                                            <h1>Delete Case</h1>
+                                            <p>This action can not be reversed when done! </p>
+                                        </div>
+    
+                                        <input id="feedbackinput" type="text" placeholder="Feedback" class="form-control" required name="feedback">
+                                        <input style="display: none" disabled id="userID" value="<?= $order->getReportedbyId() ?>" type="text" placeholder="Feedback" class="form-control" required name="feedback">
+    
+                                        <div class="form-group">
+                                            <input type="submit" value="Approve" style="width: 100% !important;" class="sponsorchildnowbtn">
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="reset" id="cancelbtn" style="background: #fff;border: 1px solid #000;padding: 10px 20px;width: 100%;color: #000; border-radius: 5px;" onclick="cancelsponsohip()">Cancel
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
 
@@ -306,14 +314,13 @@ require("../queries/classes/admins.php");
                         </div>
 
                         <!-- modal to assign a case to another user -->
-                        <div class="modal-overlay">
+                        <div class="modal" id="assignmodal">
                             <div class="modal-content">
-                                <span class="close">&times;</span>
                                 <!-- Your modal content goes here -->
-                                <div>
+                                <form action="./processors/assign_case_query.php" method="post">
                                     <div class="form-group">
-                                        <input id="childnameinput" type="hidden" name="childname" class="form-control" placeholder="order_id" disabled>
-                                        <input id="order_status_id" type="hidden" name="order_status" class="form-control" placeholder="order_status" disabled>
+                                        <input id="childnameinput" type="hidden" name="case_id" class="form-control" value="<?= $order->getId() ?>" >
+                                        <input id="order_status_id" type="hidden" name="order_status" class="form-control" value="<?= $order->getId() ?>" placeholder="order_status" >
                                     </div>
 
                                     <div>
@@ -321,27 +328,26 @@ require("../queries/classes/admins.php");
                                         <p style="font-size:16px;opacity:.6">Assign case to another admin user.</p>
                                     </div>
                                     <div style="margin-top:20px">
-                                        <select id="searchableSelect" name="admin_name" class="form-control">
+                                        <select id="searchableSelect" name="staff_id" class="form-control" required>
                                             <option disabled selected >Select</option>
                                             <?php  
                                                 foreach ($adminUsers->getUsers() as $key ) {?>
                                                 <option
                                                     value="<?php echo $key["user_id"]?>"
                                                 >
-                                                    <?php echo $key["full_name"];}?>
+                                                    <?php echo $key["full_name"];?>
                                                 </option>
+                                                <?php }?>
                                         </select>
                                     </div>
 
                                     <div class="form-group" style="margin-top:20px">
-                                    <input type="submit" value="Assign" id="assignButton" style="width: 100% !important;" class="sponsorchildnowbtn">
+                                        <input type="submit" value="Assign" id="assignButton" style="width: 100% !important;" class="sponsorchildnowbtn">
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" id="cancelbtn" style="background: #fff;border: 1px solid #000;padding: 10px 20px;width: 100%;color: #000; border-radius: 5px;" onclick="cancelsponsohip()">Cancel
-                                        </button>
+                                        <button id="cancelassignbtn" style="background: #fff;border: 1px solid #000;padding: 10px 20px;width: 100%;color: #000; border-radius: 5px;" onclick="cancelsponsohip()">Cancel</button>
                                     </div>
-                                </div>
-
+                                </form>
                             </div>
                         </div>
         
@@ -366,18 +372,6 @@ require("../queries/classes/admins.php");
             </div>
         </div>
 
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
-            <div class="toast-header">
-                <strong class="mr-auto">Notification</strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                This is a toast notification.
-            </div>
-         </div>
-
     </section>
 
     <script>
@@ -395,6 +389,15 @@ require("../queries/classes/admins.php");
 
         searchBtn.addEventListener("click", () => {
             sidebar.classList.remove("close");
+        });
+
+        
+        $(".assignCaseButton").click(function(){
+            $("#assignmodal").show();
+            console.log("clicked");
+        });
+        $("#cancelassignbtn").click(function(){
+            $("#assignmodal").hide();
         })
 
         $(document).ready(function () {
@@ -402,47 +405,6 @@ require("../queries/classes/admins.php");
             $('#searchableSelect').select2({
                 width: '100%', 
                 height:'100px'
-            });
-                                               
-                             
-
-            $("#assignButton").click(function(){
-                let caseId = $(".order_id_input").val();
-                let statusId = $(".order_status_id").val();
-                let assigned_staff = $("#searchableSelect").val();
-                console.log(caseId);
-                console.log(statusId);
-                
-                if(assigned_staff){
-
-                    let formdata = new FormData();
-                    formdata.append("staff_id",assigned_staff);
-                    formdata.append("case_id",caseId);
-                    formdata.append("status_id",statusId);
-
-                    $.ajax({
-                        type:"POST",
-                        url:"./processors/assign_case_query.php",
-                        data: formdata,
-                        dataType: "json",
-                        enctype: "multipart/form-data",
-                        contentType:false,
-                        processData: false,
-                        success(data) {
-                            console.log(data);
-                            if(data === "success"){
-                                $('.toast').toast('show');
-                            }else{
-                                console.log(data);
-                            }
-                        }
-                    })
-                    
-                }else{
-                    console.log("No staff");
-                }
-                console.log(assigned_staff);
-                $("#assigncase").show();
             });
 
             
@@ -464,8 +426,8 @@ require("../queries/classes/admins.php");
                 if (event.target.className === "modal-overlay") {
                     $(".modal-overlay").fadeOut();
                 }
-            });
-        })
+            }); 
+  });
 
     </script>
 
