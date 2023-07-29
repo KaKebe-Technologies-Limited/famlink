@@ -90,6 +90,12 @@ require "queries/classes/Cases.php";
               <span class="text nav-text">Users</span>
             </a>
           </li>
+          <li class="nav-link">
+              <a href="pages/manage_users.php">
+              <i class='bx bx-user icon'></i>
+                <span class="text nav-text">Manage Users</span>
+              </a>
+            </li>
         </ul>
       </div>
 
