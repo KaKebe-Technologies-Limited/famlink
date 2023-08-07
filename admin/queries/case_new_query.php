@@ -6,11 +6,11 @@ $user_id = $_SESSION['user_id'];
 $caseNew = array();
 $case_new_sql = "";
 
-if($role = 3){
+if($role == 3){
     $case_new_sql = mysqli_query($con, "SELECT id FROM  cases WHERE status = 1 AND assigned_to = $user_id ORDER BY `cases`.`datecreated` DESC ");
 }
 
-if($role = 2){
+if($role == 2){
     $case_new_sql = mysqli_query($con, "SELECT id FROM  cases WHERE status = 1 ORDER BY `cases`.`datecreated` DESC ");
 }
 

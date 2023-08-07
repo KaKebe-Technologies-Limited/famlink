@@ -82,18 +82,25 @@ require("../queries/classes/Cases.php");
                         <span class="text nav-text">Appointments</span>
                     </a>
                 </li>
-                <li class="nav-link">
-                  <a href="users.php">
-                    <i class='bx bx-pie-chart-alt icon'></i>
-                    <span class="text nav-text">Users</span>
-                  </a>
-                </li>
-                <li class="nav-link">
-                  <a href="manage_users.php">
-                  <i class='bx bx-user icon'></i>
-                    <span class="text nav-text">Manage Users</span>
-                  </a>
-                </li>
+                <?php 
+                    if($_SESSION["role"] == "2"){?>
+
+                        <li class="nav-link">
+                          <a href="users.php">
+                            <i class='bx bx-pie-chart-alt icon'></i>
+                            <span class="text nav-text">Users</span>
+                          </a>
+                        </li>
+                        
+                        <li class="nav-link">
+                          <a href="manage_users.php">
+                          <i class='bx bx-user icon'></i>
+                            <span class="text nav-text">Manage Users</span>
+                          </a>
+                        </li>
+                        
+                    <?php }
+                ?>
             </ul>
         </div>
 

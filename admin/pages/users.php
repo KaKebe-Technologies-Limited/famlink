@@ -146,19 +146,25 @@ button {
                     </a>
                 </li>
 
-                <li class="nav-link active">
-                  <a href="users.php">
-                    <i class='bx bx-pie-chart-alt icon'></i>
-                    <span class="text nav-text">Users</span>
-                  </a>
-                </li>
+                <?php 
+                    if($_SESSION["role"] == "2"){?>
 
-                <li class="nav-link">
-                  <a href="manage_users.php">
-                  <i class='bx bx-user icon'></i>
-                    <span class="text nav-text">Manage Users</span>
-                  </a>
-                </li>
+                        <li class="nav-link active">
+                          <a href="users.php">
+                            <i class='bx bx-pie-chart-alt icon'></i>
+                            <span class="text nav-text">Users</span>
+                          </a>
+                        </li>
+                        
+                        <li class="nav-link">
+                          <a href="manage_users.php">
+                          <i class='bx bx-user icon'></i>
+                            <span class="text nav-text">Manage Users</span>
+                          </a>
+                        </li>
+                        
+                    <?php }
+                ?>
             </ul>
         </div>
 
@@ -201,17 +207,15 @@ button {
 
                 <div >
                    
-                    <table class="table table-responsive table-stripped">
+                    <table class="table table-responsive">
                         <thead>
-                            <th>Reported By</th>
+                            <th>Reporter</th>
                             <th>Location</th>                            
                             <th>Region</th>
                             <th>Contact</th>
-                            <th>Gender</th> 
-                            <th>Age</th> 
                             <th>Village</th>
                             <th>Parish</th>
-                            <th>Sub County</th>
+                            <th>SubCounty</th>
                             <th>District</th>
                             <th>Reported On</th>
                         </thead>
@@ -224,8 +228,6 @@ button {
                                         <td><?php echo $user["location"]?></td>
                                         <td><?php echo $user["region"]?></td>
                                         <td><?php echo $user["contact"]?></td>
-                                        <td><?php echo $user["victim_gender"]?></td>
-                                        <td><?php echo $user["victim_age"]?></td>
                                         <td><?php echo $user["village"]?></td>
                                         <td><?php echo $user["parish"]?></td>
                                         <td><?php echo $user["sub_county"]?></td>
@@ -273,12 +275,6 @@ button {
 
 <script src="../js/process_case_detail.js"></script>
 <script>
-    $(document).ready(function () {
-       
-    });
-    function manageMember(id){
-        console.log(id)
-    }
 </script>
 
 </body>

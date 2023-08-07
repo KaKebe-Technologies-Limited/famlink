@@ -146,19 +146,25 @@ button {
                     </a>
                 </li>
 
-                <li class="nav-link">
-                  <a href="users.php">
-                    <i class='bx bx-pie-chart-alt icon'></i>
-                    <span class="text nav-text">Users</span>
-                  </a>
-                </li>
+                <?php 
+                    if($_SESSION["role"] == "2"){?>
 
-                <li class="nav-link active">
-                  <a href="manage_users.php">
-                  <i class='bx bx-user icon'></i>
-                    <span class="text nav-text">Manage Users</span>
-                  </a>
-                </li>
+                        <li class="nav-link">
+                          <a href="users.php">
+                            <i class='bx bx-pie-chart-alt icon'></i>
+                            <span class="text nav-text">Users</span>
+                          </a>
+                        </li>
+                        
+                        <li class="nav-link active">
+                          <a href="manage_users.php">
+                          <i class='bx bx-user icon'></i>
+                            <span class="text nav-text">Manage Users</span>
+                          </a>
+                        </li>
+
+                    <?php }
+                ?>
             </ul>
         </div>
 
@@ -206,8 +212,8 @@ button {
                             <th>Name</th>
                             <th>Email</th>                            
                             <th>Contact</th>
-                            <th>Permissions</th>
-                            <th></th>
+                            <th>super_admin</th>
+                            <th>Admin</th>
                         </thead>
                         <tbody>
                             <?php 
@@ -217,21 +223,20 @@ button {
                                         <td><?php echo $user["full_name"]?></td>
                                         <td><?php echo $user["email"]?></td>
                                         <td><?php echo $user["phone_number"]?></td>
-                                        <td>
-                                            <?php 
-                                                if($user["userRole"] == 2){
-                                                    echo "Super Admin";
-                                                }
-                                                if($user["userRole"] == 3){
-                                                    echo "Admin";
-                                                }                                                
-                                                if($user["userRole"] == 1){
-                                                    echo "User";
-                                                }                                        
-                                            ?>
+                                        <td> 
+                                            <?php if($user["userRole"] == 2){?>
+                                                <input type="checkbox" name="s_admin" onclick="changePermission('<?php echo $user['user_id']?>',1)" class="form-control" style="height:20px" checked/>
+                                            <?php }else{?>
+                                                    <input type="checkbox" name="s_admin" onclick="changePermission('<?php echo $user['user_id']?>',2)" class="form-control" style="height:20px" />                                                
+                                            <?php }?>
                                         </td>
+
                                         <td>
-                                            <button class="btn btn-primary" onclick="manageMember(<?php echo $user['user_id']?>)">Manage User</button>
+                                            <?php if($user["userRole"] == 3){?>
+                                                <input type="checkbox" name="admin" class="form-control" style="height:20px" onclick="changePermission('<?php echo $user['user_id']?>',1)" checked/>
+                                            <?php }else{?>
+                                                    <input type="checkbox" name="admin" class="form-control" style="height:20px" onclick="changePermission('<?php echo $user['user_id']?>',3)"/>                                                
+                                            <?php }?>
                                         </td>
                                     </tr>
                                 <?php }
@@ -243,43 +248,21 @@ button {
             </div>
         </div>
     </div>
-
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Modal Title</h2>
-            <p>This is a simple modal example.</p>
-        </div>
-    </div>
-
-    <div class="modal-overlay" v-if="showModal">
-        <div class="modal">
-            <h3>Set Role</h3>
-            <select v-model="selectedRole" class="form-control">
-                <option value="3">Admin</option>
-                <option value="2">Super Admin</option>
-                <option value="1">User</option>
-            </select>
-            <div class="row">
-                <div class="col-md-6">
-                    <button class="btn btn-success" onclick="closeModal()">Submit</button>
-                </div>
-                <div class="col-md-6">
-                    <button class="btn btn-danger" onclick="closeModal()">Close</button>
-                </div>
-            </div>
-            
-        </div>
-  </div>
 </section>
 
-<script src="../js/process_case_detail.js"></script>
 <script>
-    $(document).ready(function () {
-       
-    });
-    function manageMember(id){
-        console.log(id)
+    function changePermission(user_id,role){
+        $.ajax({
+            type:"POST",
+            url:"../queries/change_permissions.php",
+            data:{user_id:user_id,role:role},
+            dataType: "json",
+            success(data){
+                console.log(data);
+            }
+        })
+
+        window.location.reload();
     }
 </script>
 
