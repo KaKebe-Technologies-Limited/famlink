@@ -275,12 +275,6 @@ button {
 
 <script src="../js/process_case_detail.js"></script>
 <script>
-    $(document).ready(function () {
-       
-    });
-    function manageMember(id){
-        console.log(id)
-    }
 </script>
 
 </body>
