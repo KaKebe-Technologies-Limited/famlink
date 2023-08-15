@@ -1,8 +1,8 @@
 <?php
 include("config.php");
 
-$db = new Database();
-$con = $db->getConnString();
+// $db = new Database();
+// $con = $db->getConnString();
 
 $errors = [];
 $data = [];

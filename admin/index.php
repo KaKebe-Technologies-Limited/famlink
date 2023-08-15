@@ -1,15 +1,16 @@
 <?php
 // keep the same order
+
+// Include the database configuration
 require("config.php");
-$db = new Database();
-$con = $db->getConnString();
+$con = $conn; // Assuming your database connection is established in config.php
 
 require('session.php');
-
 require('queries/statsquery.php');
 require('queries/case_new_query.php');
 require "queries/classes/User.php";
 require "queries/classes/Cases.php";
+?>
 
 
 
