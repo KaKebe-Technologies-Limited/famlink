@@ -28,6 +28,7 @@ include_once 'config.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $feedback = [];
+    $con;
     try {
         if ($con == null) {
             $error = "Connection Problems, Check your Connection and Try again";

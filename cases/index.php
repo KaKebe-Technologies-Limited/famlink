@@ -1,3 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>User Sign-Up and Sign-In</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
 <?php 
 
     include("./../admin/config.php");
@@ -106,23 +125,6 @@
     }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>User Sign-Up and Sign-In</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            margin-top: 50px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
 <body>
     <div class="container">
         <ul class="nav nav-tabs">
