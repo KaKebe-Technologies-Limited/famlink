@@ -16,3 +16,22 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home1/rgxszumy/public_html/famlinkApp/admin/pages/appointmentdetail.php on line 265
+[21-Jul-2023 20:40:43 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/Appointment.php on line 109
+[21-Jul-2023 20:41:12 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/Appointment.php on line 109
+[22-Jul-2023 07:53:18 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/Appointment.php on line 109
+[22-Jul-2023 08:34:13 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/Appointment.php on line 109
+[22-Jul-2023 08:34:27 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/Appointment.php on line 109
+[26-Jul-2023 11:00:34 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/Appointment.php on line 109
+[26-Jul-2023 11:02:15 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/Appointment.php on line 109
+[27-Jul-2023 08:34:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/Appointment.php on line 109
+[27-Jul-2023 08:35:15 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/Appointment.php on line 109
+[27-Jul-2023 08:35:25 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/Appointment.php on line 109
+[28-Jul-2023 08:31:19 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/Appointment.php on line 109
+[28-Jul-2023 15:51:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/all_users.php on line 61
+[28-Jul-2023 15:51:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/all_users.php on line 61
+[28-Jul-2023 15:51:20 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/Appointment.php on line 109
+[28-Jul-2023 15:56:22 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/Appointment.php on line 109
+[07-Aug-2023 18:51:49 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/all_users.php on line 61
+[07-Aug-2023 18:51:49 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/all_users.php on line 61
+[07-Aug-2023 18:52:49 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/all_users.php on line 61
+[07-Aug-2023 18:52:49 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/cleamqhw/famlink.cleancitiesuganda.com/admin/queries/classes/all_users.php on line 61

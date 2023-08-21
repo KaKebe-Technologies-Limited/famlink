@@ -4,3 +4,42 @@ Stack trace:
 #1 /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/routes/create_appointment.php(29): Appointments->create()
 #2 {main}
   thrown in /home1/rgxszumy/public_html/famlinkApp/mobile/api/v1/Functions/Appointments.php on line 33
+[26-Jul-2023 10:58:56 UTC] PHP Warning:  Undefined variable $victim_name in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 54
+[26-Jul-2023 10:58:56 UTC] PHP Warning:  Undefined variable $victim_gender in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 55
+[26-Jul-2023 10:58:56 UTC] PHP Warning:  Undefined variable $age in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 56
+[26-Jul-2023 10:58:56 UTC] PHP Warning:  Undefined variable $region in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 57
+[26-Jul-2023 10:58:56 UTC] PHP Warning:  Undefined variable $contact in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 58
+[26-Jul-2023 10:58:56 UTC] PHP Warning:  Undefined variable $village in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 59
+[26-Jul-2023 10:58:56 UTC] PHP Warning:  Undefined variable $sub_county in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 60
+[26-Jul-2023 10:58:56 UTC] PHP Warning:  Undefined variable $district in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 61
+[26-Jul-2023 10:58:56 UTC] PHP Warning:  Undefined variable $anysupport in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 62
+[26-Jul-2023 19:02:15 UTC] PHP Warning:  Undefined property: stdClass::$anysupport in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/routes/create_case.php on line 37
+[26-Jul-2023 19:02:15 UTC] PHP Warning:  Undefined variable $victim_name in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 54
+[26-Jul-2023 19:02:15 UTC] PHP Warning:  Undefined variable $victim_gender in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 55
+[26-Jul-2023 19:02:15 UTC] PHP Warning:  Undefined variable $age in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 56
+[26-Jul-2023 19:02:15 UTC] PHP Warning:  Undefined variable $region in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 57
+[26-Jul-2023 19:02:15 UTC] PHP Warning:  Undefined variable $contact in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 58
+[26-Jul-2023 19:02:15 UTC] PHP Warning:  Undefined variable $village in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 59
+[26-Jul-2023 19:02:15 UTC] PHP Warning:  Undefined variable $sub_county in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 60
+[26-Jul-2023 19:02:15 UTC] PHP Warning:  Undefined variable $district in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 61
+[26-Jul-2023 19:02:15 UTC] PHP Warning:  Undefined variable $anysupport in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 62
+[28-Jul-2023 09:04:00 UTC] PHP Warning:  Undefined variable $victim_name in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 54
+[28-Jul-2023 09:04:00 UTC] PHP Warning:  Undefined variable $victim_gender in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 55
+[28-Jul-2023 09:04:00 UTC] PHP Warning:  Undefined variable $age in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 56
+[28-Jul-2023 09:04:00 UTC] PHP Warning:  Undefined variable $region in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 57
+[28-Jul-2023 09:04:00 UTC] PHP Warning:  Undefined variable $contact in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 58
+[28-Jul-2023 09:04:00 UTC] PHP Warning:  Undefined variable $village in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 59
+[28-Jul-2023 09:04:00 UTC] PHP Warning:  Undefined variable $sub_county in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 60
+[28-Jul-2023 09:04:00 UTC] PHP Warning:  Undefined variable $district in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 61
+[28-Jul-2023 09:04:00 UTC] PHP Warning:  Undefined variable $anysupport in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 62
+[28-Jul-2023 09:04:00 UTC] PHP Warning:  Undefined variable $parish in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 63
+[28-Jul-2023 09:30:43 UTC] PHP Warning:  Undefined variable $victim_name in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 54
+[28-Jul-2023 09:30:43 UTC] PHP Warning:  Undefined variable $victim_gender in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 55
+[28-Jul-2023 09:30:43 UTC] PHP Warning:  Undefined variable $age in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 56
+[28-Jul-2023 09:30:43 UTC] PHP Warning:  Undefined variable $region in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 57
+[28-Jul-2023 09:30:43 UTC] PHP Warning:  Undefined variable $contact in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 58
+[28-Jul-2023 09:30:43 UTC] PHP Warning:  Undefined variable $village in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 59
+[28-Jul-2023 09:30:43 UTC] PHP Warning:  Undefined variable $sub_county in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 60
+[28-Jul-2023 09:30:43 UTC] PHP Warning:  Undefined variable $district in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 61
+[28-Jul-2023 09:30:43 UTC] PHP Warning:  Undefined variable $anysupport in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 62
+[28-Jul-2023 09:30:43 UTC] PHP Warning:  Undefined variable $parish in /home/cleamqhw/famlink.cleancitiesuganda.com/mobile/api/v1/Functions/Referral.php on line 63

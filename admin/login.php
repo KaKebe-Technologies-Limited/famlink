@@ -20,15 +20,13 @@ include("config.php");
 </head>
 
 <?php
-
-include_once 'config.php';
-// $db = new Database();
-// $con = $db->getConnString();
+$db = new Database();
+$con = $db->getConnString();
 
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $feedback = [];
-    $con;
     try {
         if ($con == null) {
             $error = "Connection Problems, Check your Connection and Try again";
@@ -37,23 +35,59 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $mypassword = mysqli_real_escape_string($con, $_POST['password']);
             $encryptedpw = md5($mypassword);
 
-            // Rest of your code...
+            //i have added the userRole 3
+            // 1 - ordinary user
+            // 2 - superadmin
+            //3 - admin
 
-            if ($error != null) {
-                echo '<div id="erroshow" class="erroshow">
-                    <div class="errorinnerdiv">
-                        <p class="errotext">' . $error . '</p>
-                    </div>
-                </div>
-                <div id="erroroverlay" style="height: 100%; opacity: 0.4; position: absolute; top: 0px; left: 0px; background-color: black; width: 100%; z-index: 5000;"></div>';
+            $statement = $con->prepare('SELECT * FROM users WHERE  email=? AND password =? AND (userRole = "2" OR userRole = "3") limit 1');
+            $statement->bind_param('ss', $myuseremail, $encryptedpw);
+            if ($statement->execute()) {
+                $result = $statement->get_result();
+                // $statement->store_result();
+                // $statement->fetch();
+                if ($result) {
+                    if ($result->num_rows == 1) {
+                        $row = $result->fetch_assoc();
+                        $_SESSION['login_user'] = $myuseremail;
+                        $_SESSION['role'] = $row["userRole"];
+                        $_SESSION['username'] = $row["full_name"];
+                        $_SESSION['user_id'] = $row["user_id"];
+                        header("location: index.php");
+                        exit;
+                    }else{
+                        $error = "Login Failed, Ensure Password and Email is Correct and Try Again";
+                        echo "<script>showerror();</script>";
+                    }
+                }
+            } else {
+                $error = "Login Failed, Ensure Password and Email is Correct and Try Again";
+                echo "<script>showerror();</script>";
             }
         }
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
-}
+
+    if ($error != null) {
+
 ?>
 
+        <div id="erroshow" class="erroshow">
+            <div class="errorinnerdiv">
+                <p class="errotext"><?php echo $error; ?></p>
+            </div>
+        </div>
+        <div id="erroroverlay" style="height: 100%; opacity: 0.4; position: absolute; top: 0px; left: 0px; background-color: black; width: 100%; z-index: 5000;"></div>
+
+
+
+<?php
+
+    }
+}
+
+?>
 
 <body>
 
