@@ -157,7 +157,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number:</label>
-                        <input type="tel" class="form-control" id="phone_number" name="phone_number" required>
+                        <input type="number"  class="form-control" id="phone_number" name="phone_number"  required>
                     </div>
                     <div class="form-group">
                         <label for="address">Address:</label>
