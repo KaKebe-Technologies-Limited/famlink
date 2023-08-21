@@ -21,16 +21,23 @@
                     $statement = $con->prepare('SELECT * FROM users WHERE  email=? AND password =? limit 1');
                     $statement->bind_param('ss', $myuseremail, $encryptedpw);
                     if ($statement->execute()) {
+
                         $result = $statement->get_result();
-                        if ($result->num_rows == 1) {
-                            $row = $result->fetch_assoc();
-                            $_SESSION['user_email'] = $myuseremail;
-                            $_SESSION['userid'] = $row["user_id"];
-                            header("location: services.php");
-                        }
-                        else {
-                            $error = "Login Failed, Ensure Password and Email is Correct and Try Again";
-                            echo "<script>showerror();</script>";
+
+                        if($result){
+                            if ($result->num_rows == 1) {
+                                $row = $result->fetch_assoc();
+
+                                $_SESSION['user_email'] = $myuseremail;
+                                $_SESSION['userid'] = $row["user_id"];
+                                $_SESSION["role"] = $row["userRole"];
+                                header("location: services.php");
+                                exit;
+                            }
+                            else {
+                                $error = "Login Failed, Ensure Password and Email is Correct and Try Again";
+                                echo "<script>showerror();</script>";
+                            }
                         }
                     } else {
                         $error = "Login Failed, Ensure Password and Email is Correct and Try Again";
@@ -170,7 +177,7 @@
             <div class="tab-pane fade show active" id="signin" action="">
                 <h2 style="margin-bottom: 20px;">User Sign-In</h2>
                 <i class="text-center text-danger"> <?php echo $error ?></i>
-                <form id="famlink-login-form" method="POST" action="services.php">
+                <form id="famlink-login-form" method="POST" action="#">
                     <input type="text" name="user_action" value="login" hidden>
                     <div class="form-group">
                         <label for="email">Email:</label>
