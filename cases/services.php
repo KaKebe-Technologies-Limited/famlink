@@ -51,9 +51,9 @@
             $picture = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNsJyFJ1hSBVJ4mVkdeyNNJCTR3QyYaEHjug&amp;amp;usqp=CAU";;
             $description = $_POST["description"];
             //TO DO this should the suer id og logged user
-            $reportedby_id = $_SESSION["userid"];
+            $reportedby_id = $_SESSION["user_id"];
             $status = 1;
-            $address = $_POST["location"];
+            // $address = $_POST["location"];
             $datecreated = date('Y-m-d H:i:s');
             $category_id = $_POST["category"];
 
@@ -66,9 +66,10 @@
             $village = $_POST["village"];
             $subCounty = $_POST["sub_county"];
             $district = $_POST["district"];
+            $anysupport = $_POST["anysupport"];
             $agree = $_POST["user_consent"];
 
-            $stmt = $con->prepare("INSERT INTO cases(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`,`victim_name`,`victim_gender`,`victim_age`,`region`,`contact`,`village`,`sub_county`,`district`,`user_consent`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            $stmt = $con->prepare("INSERT INTO " . $this->cases . "(`title`, `picture`, `description`, `category_id`, `location`, `reportedby_id`, `status`,`victim_name`,`victim_gender`,`victim_age`,`region`,`contact`,`village`,`sub_county`,`district`,`any_support`,`parish`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $title = htmlspecialchars(strip_tags($title));
             $picture = htmlspecialchars(strip_tags($picture));
             $description = htmlspecialchars(strip_tags($description));
@@ -85,12 +86,10 @@
             $village = htmlspecialchars(strip_tags($village));
             $sub_county = htmlspecialchars(strip_tags($sub_county));
             $district = htmlspecialchars(strip_tags($district));
-            $agree = htmlspecialchars(strip_tags($agree));
+            $anysupport = htmlspecialchars(strip_tags($anysupport));
+            $parish = htmlspecialchars(strip_tags($parish));
 
-
-
-
-            $stmt->bind_param("sssssiississssss", $title, $picture, $description, $category_id, $address, $reportedby_id, $status,$victim_name,$victim_gender,$age,$contact,$village,$sub_county,$district,$agree);
+            $stmt->bind_param("sssssiississsssss", $title, $picture, $description, $category_id, $address, $reportedby_id, $status,$victim_name,$gender,$age,$region,$contact,$village,$subCounty,$district,$anysupport,$parish);
 
             if ($stmt->execute()) {
                 // $this->exe_status = "success";
@@ -98,7 +97,7 @@
             } else {
                 // $this->exe_status = "failure";
                 $message = "Cases failed";
-            }
+            }            
 
         }
     }
@@ -187,10 +186,17 @@
                 
                 <form method="POST" action="#">
                     <input type="text" name="user_action" value="report_case" hidden>
+
+                    <div class="form-group">
+                        <label for="location">victim name:</label>
+                        <input type="text" class="form-control" id="victim_name" name="victim_name" required>
+                    </div>
+
                     <div class="form-group">
                         <label for="title">Title:</label>
                         <input type="text" class="form-control" id="title" name="title" required>
                     </div>
+
                     <div class="form-group">
                         <label for="category">Category:</label>
                         <select name="category" class="form-control" required>
@@ -205,10 +211,66 @@
                             <option value=""></option>
                         </select>
                     </div>
+                    
                     <div class="form-group">
+                        <label for="location">victim_gender</label>
+                        <select 
+                            class="form-control" 
+                            id="victim_gender" 
+                            name="victim_gender" 
+                            required>
+                            <option selected disabled> select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">victim_age</label>
+                        <input type="number" class="form-control" id="victim_age" name="victim_age" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">religion</label>
+                        <input type="text" class="form-control" id="region" name="region" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Contact</label>
+                        <input type="number" class="form-control" id="contact" name="contact" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">village</label>
+                        <input type="text" class="form-control" id="village" name="village" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Parish</label>
+                        <input type="text" class="form-control" id="parish" name="parish" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">sub_county</label>
+                        <input type="text" class="form-control" id="sub_county" name="sub_county" required>
+                    </div>
+                   
+                    
+                    <div class="form-group">
+                        <label for="location">district</label>
+                        <input type="checkbox"  id="district" name="user_consent" required>
+                    </div>
+
+
+                    <!-- <div class="form-group">
                         <label for="location">Location:</label>
                         <input type="text" class="form-control" id="location" name="location" required>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="description">Any Support recieved:</label>
+                        <textarea class="form-control" id="description" name="anysupport" required></textarea>
                     </div>
+
                     <div class="form-group">
                         <label for="description">Description:</label>
                         <textarea class="form-control" id="description" name="description" required></textarea>

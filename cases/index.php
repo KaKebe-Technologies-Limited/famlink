@@ -29,7 +29,7 @@
                                 $row = $result->fetch_assoc();
 
                                 $_SESSION['user_email'] = $myuseremail;
-                                $_SESSION['userid'] = $row["user_id"];
+                                $_SESSION['user_id'] = $row["user_id"];
                                 $_SESSION["role"] = $row["userRole"];
                                 header("location: services.php");
                                 exit;
