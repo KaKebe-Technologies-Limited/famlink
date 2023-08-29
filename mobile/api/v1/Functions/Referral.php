@@ -51,16 +51,16 @@ class Referral
         $this->status = htmlspecialchars(strip_tags($this->status));
         $this->address = htmlspecialchars(strip_tags($this->address));
 
-		$victim_name = htmlspecialchars(strip_tags($victim_name));
-		$victim_gender = htmlspecialchars(strip_tags($victim_gender));
-		$age = htmlspecialchars(strip_tags($age));
-		$region  = htmlspecialchars(strip_tags($region));
-		$contact = htmlspecialchars(strip_tags($contact));
-		$village = htmlspecialchars(strip_tags($village));
-		$sub_county = htmlspecialchars(strip_tags($sub_county));
-		$district = htmlspecialchars(strip_tags($district));
-		$anysupport = htmlspecialchars(strip_tags($anysupport));
-		$parish = htmlspecialchars(strip_tags($parish));
+		$this->victim_name = htmlspecialchars(strip_tags($this->victim_name));
+		$this->victim_gender = htmlspecialchars(strip_tags($this->victim_gender));
+		$this->age = htmlspecialchars(strip_tags($this->age));
+		$this->region  = htmlspecialchars(strip_tags($this->region));
+		$this->contact = htmlspecialchars(strip_tags($this->contact));
+		$this->village = htmlspecialchars(strip_tags($this->village));
+		$this->sub_county = htmlspecialchars(strip_tags($this->sub_county));
+		$this->district = htmlspecialchars(strip_tags($this->district));
+		$this->anysupport = htmlspecialchars(strip_tags($this->anysupport));
+		$this->parish = htmlspecialchars(strip_tags($this->parish));
 
 
 
