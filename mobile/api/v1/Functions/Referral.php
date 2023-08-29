@@ -52,12 +52,12 @@ class Referral
         $this->address = htmlspecialchars(strip_tags($this->address));
 
 		$this->victim_name = htmlspecialchars(strip_tags($this->victim_name));
-		$this->victim_gender = htmlspecialchars(strip_tags($this->victim_gender));
+		$this->gender = htmlspecialchars(strip_tags($this->gender));
 		$this->age = htmlspecialchars(strip_tags($this->age));
 		$this->region  = htmlspecialchars(strip_tags($this->region));
 		$this->contact = htmlspecialchars(strip_tags($this->contact));
 		$this->village = htmlspecialchars(strip_tags($this->village));
-		$this->sub_county = htmlspecialchars(strip_tags($this->sub_county));
+		$this->subCounty = htmlspecialchars(strip_tags($this->subCounty));
 		$this->district = htmlspecialchars(strip_tags($this->district));
 		$this->anysupport = htmlspecialchars(strip_tags($this->anysupport));
 		$this->parish = htmlspecialchars(strip_tags($this->parish));
