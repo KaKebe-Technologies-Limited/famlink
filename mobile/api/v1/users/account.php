@@ -12,6 +12,7 @@ $response = array();
 //that means a get parameter named api call is set in the URL 
 //and with this parameter we are concluding that it is an api call 
 if (isset($_GET['apicall'])) {
+        
 
         switch ($_GET['apicall']) {
 
@@ -77,15 +78,8 @@ if (isset($_GET['apicall'])) {
                                 }
                         } else {
 
-                                // testing
-                                $arr =[];
-                                foreach ($_POST as $key => $value) {
-                                        echo "Variable: $key, Value: $value<br>";
-                                        array_push($arr,$value);
-                                }
-                                // testing
                                 $response['error'] = true;
-                                $response['message'] = 'required parameters are not available'.json_encode($_POST);
+                                $response['message'] = 'required parameters are not available'.json_encode($_POST['full_name']);
                         }
 
                         break;
