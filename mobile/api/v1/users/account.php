@@ -45,8 +45,8 @@ if (isset($_GET['apicall'])) {
                                 } else {
 
                                         //if user is new creating an insert query 
-                                        $stmt = $conn->prepare("INSERT INTO users (`full_name`, `email`, `phone_number`, `address`, `profile_image`,`password`) VALUES (?, ?, ?, ?, ?, ?)");
-                                        $stmt->bind_param("ssssss", $full_name, $email, $phone_number, $location_address, $profileimage, $password);
+                                        $stmt = $conn->prepare("INSERT INTO users (`full_name`,`username`, `email`, `phone_number`, `address`, `profile_image`,`password`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                                        $stmt->bind_param("sssssss", $full_name,$full_name ,$email, $phone_number, $location_address, $profileimage, $password);
 
                                         //if the user is successfully added to the database 
                                         if ($stmt->execute()) {
@@ -85,7 +85,7 @@ if (isset($_GET['apicall'])) {
                                 }
                                 // testing
                                 $response['error'] = true;
-                                $response['message'] = 'required parameters are not available'.json_encode($arr);
+                                $response['message'] = 'required parameters are not available'.json_encode($_POST);
                         }
 
                         break;
