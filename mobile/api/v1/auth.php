@@ -3,11 +3,10 @@
     // json header to make the return value an allowed json format
     header("Content-Type: application/json");
 
-    include_once('../../../../admin/config.php');
+    include_once '../../../../admin/config.php';
 
-    // establishing the connection to a database
-    $obj = new Database();
-    $conn = $obj->getConnString();
+    $database = new Database();
+    $conn = $database->getConnString();
 
     $response =[];
 
