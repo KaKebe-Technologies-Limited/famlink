@@ -3,7 +3,7 @@
     // json header to make the return value an allowed json format
     header("Content-Type: application/json");
 
-    include_once '../../../../admin/config.php';
+    include_once '../admin/config.php';
 
     $database = new Database();
     $conn = $database->getConnString();
