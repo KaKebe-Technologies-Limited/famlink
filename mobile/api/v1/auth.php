@@ -11,7 +11,7 @@
     $response =[];
 
     //definition of the task to be processed;
-    $useraction = $_GET["apiCall"];
+    $useraction = $_GET["apicall"];
 
     switch ($useraction){
         // incase the user requests to login
@@ -59,7 +59,7 @@
 
         
             // incase the user is registering 
-        case "register":
+        case "signup":
             if($_SERVER['REQUEST_METHOD']==='POST' ){
                 $full_name = $_POST["full_name"];
                 $email = $_POST["email"];
