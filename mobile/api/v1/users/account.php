@@ -31,14 +31,14 @@ if (isset($_GET['apicall'])) {
                 case 'signup':
 
                         //checking the parameters required are available or not 
-                        if (isTheseParametersAvailable(array('fullname', 'email', 'phone_number', 'password', 'location_address'))) {
+                        if (isTheseParametersAvailable(array('fullname', 'email', 'phone_number', 'password', 'address'))) {
 
                                 //getting the values 
                                 $full_name = $_POST['fullname'];
                                 $email = $_POST['email'];
                                 $phone_number = $_POST['phone_number'];
                                 $password = md5($_POST['password']);
-                                $location_address = $_POST['location_address'];
+                                $location_address = $_POST['address'];
                                 $profileimage = "https://media.istockphoto.com/vectors/creative-vector-seamless-pattern-vector-id975589890?k=20&m=975589890&s=612x612&w=0&h=2acWhh0ASGWI7vRqofWthsp2UqagVUCQqdmUQLyAs3Y=";
 
 
