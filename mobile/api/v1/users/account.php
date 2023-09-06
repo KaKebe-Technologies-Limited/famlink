@@ -31,10 +31,10 @@ if (isset($_GET['apicall'])) {
                 case 'signup':
 
                         //checking the parameters required are available or not 
-                        if (isTheseParametersAvailable(array('full_name', 'email', 'phone_number', 'password', 'location_address'))) {
+                        if (isTheseParametersAvailable(array('fullname', 'email', 'phone_number', 'password', 'location_address'))) {
 
                                 //getting the values 
-                                $full_name = $_POST['full_name'];
+                                $full_name = $_POST['fullname'];
                                 $email = $_POST['email'];
                                 $phone_number = $_POST['phone_number'];
                                 $password = md5($_POST['password']);
