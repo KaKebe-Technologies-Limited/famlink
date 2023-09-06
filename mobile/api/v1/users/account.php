@@ -24,7 +24,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 //and with this parameter we are concluding that it is an api call 
 if (isset($_GET['apicall'])) {
         $response["error"] = "test";
-        $response["data"] = json_encode(print_r($_POST));
+        $response["data"] = $_POST["fullname"];
 
         switch ($_GET['apicall']) {
 
