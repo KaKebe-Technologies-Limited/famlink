@@ -23,14 +23,13 @@ $method = $_SERVER['REQUEST_METHOD'];
 //that means a get parameter named api call is set in the URL 
 //and with this parameter we are concluding that it is an api call 
 if (isset($_GET['apicall'])) {
-        $response["error"] = "test";
-        $response["data"] = $_POST;
 
         switch ($_GET['apicall']) {
 
                 case 'signup':
                     if($_SERVER["REQUEST_METHOD"] === 'POST'){
                       $response["data"] = "POST";
+                      $response["show"] = json_encode($_POST);
                     }else{
                       $response["data"] = "NOT POST";
                     }
