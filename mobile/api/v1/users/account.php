@@ -91,7 +91,7 @@ if (isset($_GET['apicall'])) {
                         } else {
 
                                 $response['error'] = true;
-                                $response['message'] = 'required parameters are not available'.json_encode($_POST['full_name']);
+                                $response['message'] = 'required parameters are not available';
                         }
 
                         break;
