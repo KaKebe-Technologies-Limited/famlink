@@ -29,7 +29,7 @@ if (isset($_GET['apicall'])) {
         switch ($_GET['apicall']) {
 
                 case 'signup':
-                    if($_SERVER["method"] === 'POST'){
+                    if($_SERVER["REQUEST_METHOD"] === 'POST'){
                       $response["data"] = "POST";
                     }else{
                       $response["data"] = "NOT POST";
