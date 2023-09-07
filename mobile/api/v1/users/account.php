@@ -29,75 +29,75 @@ if (isset($_GET['apicall'])) {
                 case 'signup':
                     if($_SERVER["REQUEST_METHOD"] === 'POST'){
                       $response["data"] = "POST";
-                      $response["show"] = json_encode(($_POST['email']));
+                //       $response["show"] = json_encode(($_POST['email']));
+                //       checking the parameters required are available or not 
+                      if (isTheseParametersAvailable(array('fullname', 'email', 'phone_number', 'password', 'address'))) {
+  
+                              //getting the values 
+                              $full_name = $_POST['fullname'];
+                              $email = $_POST['email'];
+                              $phone_number = $_POST['phone_number'];
+                              $password = md5($_POST['password']);
+                              $location_address = $_POST['address'];
+                              $profileimage = "https://media.istockphoto.com/vectors/creative-vector-seamless-pattern-vector-id975589890?k=20&m=975589890&s=612x612&w=0&h=2acWhh0ASGWI7vRqofWthsp2UqagVUCQqdmUQLyAs3Y=";
+  
+  
+                              //checking if the user is already exist with this username or email
+                              //as the email and username should be unique for every user 
+                              $stmt = $conn->prepare("SELECT user_id FROM users WHERE phone_number = ? OR email = ?");
+                              $stmt->bind_param("ss", $phone_number, $email);
+                              $stmt->execute();
+                              $stmt->store_result();
+  
+  
+                              //if the user already exist in the database 
+                              if ($stmt->num_rows > 0) {
+                                      $response['error'] = true;
+                                      $response['message'] = 'User already registered';
+                                      $stmt->close();
+                              } else {
+  
+                                      //if user is new creating an insert query 
+                                      $stmt = $conn->prepare("INSERT INTO users (`full_name`,`username`, `email`, `phone_number`, `address`, `profile_image`,`password`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                                      $stmt->bind_param("sssssss", $full_name,$full_name ,$email, $phone_number, $location_address, $profileimage, $password);
+  
+                                      //if the user is successfully added to the database 
+                                      if ($stmt->execute()) {
+  
+                                              //fetching the user back 
+                                              $stmt = $conn->prepare("SELECT `user_id`, `full_name`, `email`, `phone_number`, `address`, `profile_image` FROM users WHERE phone_number = ? OR email = ?");
+                                              $stmt->bind_param("ss", $phone_number, $email);
+                                              $stmt->execute();
+                                          $stmt->bind_result($user_id, $full_name, $email, $phone_number, $address, $profile_image);
+                                          $stmt->fetch();
+  
+                                          $user = array(
+                                              'id' => $user_id,
+                                              'fullname' => $full_name,
+                                              'email' => $email,
+                                              'phone' => $phone_number,
+                                              'address' => $address,
+                                              'profileimage' => $profile_image
+                                          );
+  
+                                          $stmt->close();
+  
+                                              //adding the user data in response 
+                                              $response['error'] = false;
+                                              $response['message'] = 'User registered successfully';
+                                              $response['user'] = $user;
+                                      }
+                              }
+                      } else {
+  
+                              $response['error'] = true;
+                              $response['message'] = 'required parameters are not available';
+                      }
                     }else{
                       $response["data"] = "NOT POST";
                     }
 
 
-                        //checking the parameters required are available or not 
-                        // if (isTheseParametersAvailable(array('fullname', 'email', 'phone_number', 'password', 'address'))) {
-
-                        //         //getting the values 
-                        //         $full_name = $_POST['fullname'];
-                        //         $email = $_POST['email'];
-                        //         $phone_number = $_POST['phone_number'];
-                        //         $password = md5($_POST['password']);
-                        //         $location_address = $_POST['address'];
-                        //         $profileimage = "https://media.istockphoto.com/vectors/creative-vector-seamless-pattern-vector-id975589890?k=20&m=975589890&s=612x612&w=0&h=2acWhh0ASGWI7vRqofWthsp2UqagVUCQqdmUQLyAs3Y=";
-
-
-                        //         //checking if the user is already exist with this username or email
-                        //         //as the email and username should be unique for every user 
-                        //         $stmt = $conn->prepare("SELECT user_id FROM users WHERE phone_number = ? OR email = ?");
-                        //         $stmt->bind_param("ss", $phone_number, $email);
-                        //         $stmt->execute();
-                        //         $stmt->store_result();
-
-
-                        //         //if the user already exist in the database 
-                        //         if ($stmt->num_rows > 0) {
-                        //                 $response['error'] = true;
-                        //                 $response['message'] = 'User already registered';
-                        //                 $stmt->close();
-                        //         } else {
-
-                        //                 //if user is new creating an insert query 
-                        //                 $stmt = $conn->prepare("INSERT INTO users (`full_name`,`username`, `email`, `phone_number`, `address`, `profile_image`,`password`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                        //                 $stmt->bind_param("sssssss", $full_name,$full_name ,$email, $phone_number, $location_address, $profileimage, $password);
-
-                        //                 //if the user is successfully added to the database 
-                        //                 if ($stmt->execute()) {
-
-                        //                         //fetching the user back 
-                        //                         $stmt = $conn->prepare("SELECT `user_id`, `full_name`, `email`, `phone_number`, `address`, `profile_image` FROM users WHERE phone_number = ? OR email = ?");
-                        //                         $stmt->bind_param("ss", $phone_number, $email);
-                        //                         $stmt->execute();
-                        //                     $stmt->bind_result($user_id, $full_name, $email, $phone_number, $address, $profile_image);
-                        //                     $stmt->fetch();
-
-                        //                     $user = array(
-                        //                         'id' => $user_id,
-                        //                         'fullname' => $full_name,
-                        //                         'email' => $email,
-                        //                         'phone' => $phone_number,
-                        //                         'address' => $address,
-                        //                         'profileimage' => $profile_image
-                        //                     );
-
-                        //                     $stmt->close();
-
-                        //                         //adding the user data in response 
-                        //                         $response['error'] = false;
-                        //                         $response['message'] = 'User registered successfully';
-                        //                         $response['user'] = $user;
-                        //                 }
-                        //         }
-                        // } else {
-
-                        //         $response['error'] = true;
-                        //         $response['message'] = 'required parameters are not available';
-                        // }
 
                         break;
 
