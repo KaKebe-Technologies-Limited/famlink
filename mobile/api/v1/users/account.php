@@ -29,7 +29,7 @@ if (isset($_GET['apicall'])) {
                 case 'signup':
                     if($_SERVER["REQUEST_METHOD"] === 'POST'){
                       $response["data"] = "POST";
-                      $response["show"] = json_encode($_POST);
+                      $response["show"] = json_encode(print_r($_POST));
                     }else{
                       $response["data"] = "NOT POST";
                     }
