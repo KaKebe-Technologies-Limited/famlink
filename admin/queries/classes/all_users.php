@@ -58,7 +58,10 @@ class AllUsers{
     public function getUserName($id){
         $sql = mysqli_query($this->con,"SELECT full_name FROM ".$this->table." WHERE user_id=".$id);
         $result = mysqli_fetch_array($sql);
-        return $result["full_name"];
+
+        if($result){
+            return $result["full_name"];
+        }
 
     }
 
