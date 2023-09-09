@@ -79,7 +79,7 @@ require "queries/classes/Cases.php";
           </li>
 
           <li class="nav-link">
-            <a href="pages/appointments">
+            <a href="pages/appointments.php">
               <i class='bx bx-bell icon'></i>
               <span class="text nav-text">Appointments</span>
             </a>
